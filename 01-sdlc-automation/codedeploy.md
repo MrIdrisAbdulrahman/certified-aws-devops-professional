@@ -59,7 +59,7 @@
 
 ## Deployment Groups
 
-- With deployment groups we can deploy an application to an ASG, one ore multiple EC2 instances and on on-premise instances as well
+- With deployment groups we can deploy an application to an ASG, one or multiple EC2 instances and on on-premise instances as well
 - We can target multiple instances by tagging them and do a query on them based on tags
 
 ## Deploy to ECS
