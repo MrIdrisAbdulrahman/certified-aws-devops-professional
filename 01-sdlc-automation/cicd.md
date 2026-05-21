@@ -4,7 +4,7 @@
 
 - Developers push the code to a code repository often
 - A testing/build server checks the code as soon as it is pushed
-- The developers gets feedback about the tests and checks the have passed/failed
+- The developers get feedback about the tests and checks that have passed/failed
 - Find bugs early, fix bugs early
 - Deliver faster as the code is tested
 - Deploy often
@@ -24,10 +24,10 @@
 - Continuous Delivery:
     - Ability to deploy often using automation
     - May involve a manual stop to approve a deployment
-    - The deployment itself is still automated a repeatable
+    - The deployment itself is still automated and repeatable
 - Continuous Deployment:
     - Full automation, every code change is deployed all the way to production
-    - No manual intervention of approval
+    - No manual intervention (approval)
 
 ## Technology Stack for CICD in AWS
 
