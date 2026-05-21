@@ -2,13 +2,13 @@
 
 - It is an ML-powered service for automated code reviews and application performance recommendations
 - Provides two functionalities:
-    - *CodeGuru Reviewer*: automated code reviews for static code analysis(development)
+    - *CodeGuru Reviewer*: automated code reviews for static code analysis (development)
         - Can identify critical issues, security vulnerabilities and hard-to-find bugs
         - Uses ML and automated reasoning
         - Contains hard-learned lessons across millions of code reviews on open-source and Amazon repositories
         - Supports Java (and other JVM languages such as Scala and Kotlin) and Python
         - Integrates with GitHub, BitBucket and CodeCommit
-    - *CodeGuru Profiler*: visibility/recommendations about application performance during runtime(production)
+    - *CodeGuru Profiler*: visibility/recommendations about application performance during runtime (production)
         - Helps understand the runtime behavior of our application
         - Example: identify if our application is consuming excessive CPU capacity on a logging routine
         - Features:
@@ -17,7 +17,7 @@
             - Decrease compute costs
             - Provides heap summary
             - Anomaly detection
-        - Supports applications running on AWS or on on-premises
+        - Supports applications running on AWS or on-premise
         - Adds minimal overhead to an application
 
 ## Extras
