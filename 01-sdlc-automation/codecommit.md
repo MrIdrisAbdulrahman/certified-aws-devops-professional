@@ -25,7 +25,7 @@
 
 ## Notifications
 
-- We can create Notification Roles for our repositories
+- We can create Notification Rules for our repositories
 - Events that can trigger a notification:
     - Comments added to commits or pull requests
     - Approvals
