@@ -67,7 +67,7 @@
 
 ## Pull Request Approval Rules
 
-- Help ensure the quality for our code by requiring certain user(s) to approve a PR before merge
-- We can specify a pool of users we can approve and number of user who must approve a PR before being merged. Example: we can have a pool of 5 users from which at least 2 must approve a PR
+- Helps ensure code quality by requiring certain user(s) to approve a PR before a merge
+- We can specify a pool of users who can approve and number of users who must approve a PR before it is being merged. Example: we can have a pool of 5 users from which at least 2 must approve a PR
 - We can use IAM principal ARN (IAM user, federated users, IAM roles, IAM Groups) for approvals
-- Approval Rule Template: automatically apply Approval Rules to PRs
+- Approval Rule Template: automatically applies Approval Rules to PRs
