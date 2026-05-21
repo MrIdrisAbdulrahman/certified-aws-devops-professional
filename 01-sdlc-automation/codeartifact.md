@@ -5,23 +5,23 @@
 - CodeArtifact is a secure, scalable and cost-effective artifact management for software development
 - Works with common dependency management tools such as Maven, Gradle, npm, yarn, twine, pip and NuGet
 - Developers and CodeBuild can retrieve dependencies straight from CodeArtifact
-- CodeArtifact can act as a proxy for public repositories such as npm, Maven Central, etc. CodeArtifact will also cached these dependencies
+- CodeArtifact can act as a proxy for public repositories such as npm, Maven Central, etc. CodeArtifact will also cache these dependencies
 
 ## Event Bridge Integration
 
-- CodeArtifact Events (such as a version of a package is created, modified, deleted) will emit events to EventBridge
+- CodeArtifact Events (such as a version of a package created, modified, deleted) will transmit events to EventBridge
 - These events can be input for Lambda, SNS, SQS or they can trigger CodePipeline
 
 ## Resource Policy
 
 - Can be used to authorize another account to access CodeArtifact
-- A given principal can either read all the packages in a repository or non of them
+- A given principal can either read all the packages in a repository or none of them
 
 ## Upstream Repositories
 
-- A CodeArtifact repository can have other CodeArtifact repositories as Upstream Repository
-- Having an upstream, allows a package manager client to access the packages that are contained in more then one repository using a single endpoint
-- We can have up to 10 upstream repositories to a repo
+- A CodeArtifact repository can have other CodeArtifact repositories as Upstream Repositories
+- Having an upstream repo allows a package manager client to access the packages that are contained in more than one repository using a single endpoint
+- We can have up to 10 upstream repositories for each repo
 - A repository can have an external connection (it can have only one!). Example: public npm repo
 
 ## External Connections
@@ -44,7 +44,7 @@
 - Domains are useful for the following:
     - Deduplicate storage: assets only need to be stored once in a domain, even if it is available in many repositories
     - Fast copying: only metadata records are updated when we pull packages from upstream CodeArtifact Repositories into a downstream repository
-    - Easy Sharing across repositories and teams: all the assets and metadata is a domain are encrypted with a single KMS key
-    - Apply Policy across multiple repositories: a domain administrator can apply a policy across the domain as:
+    - Easy Sharing across repositories and teams: all the assets and metadata in a domain are encrypted with a single KMS key
+    - Apply Policy across multiple repositories: a domain administrator can apply a policy across a domain such as:
         - Restricting which accounts have access to repositories in the domain
         - Who can configure connections to public repositories
