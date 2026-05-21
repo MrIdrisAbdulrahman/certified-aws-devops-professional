@@ -7,7 +7,7 @@
         - Create Product: these are CloudFormation templates
         - Create Portfolio: collection of products
         - Assign IAM roles to portfolios
-    - Users tasks:
+    - User tasks:
         - They are presented as a product list
         - They will launch products
 - Service Catalog is used to create and manage catalogs of IT services that are approved by administrators on AWS
