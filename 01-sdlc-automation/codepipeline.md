@@ -22,40 +22,40 @@
 - Each pipeline stage can create artifacts
 - Artifacts are stored in S3 and passed on to the next stage
 - We can have a central S3 bucket for all the pipelines
-- Artifacts are encrypted by default with an AWS managed key. We can create our own key in KSM if we want
+- Artifacts are encrypted by default with an AWS managed key. We can create our own key in KSM if we want to
 - Artifacts are passed between CodePipeline stages
 - Final artifacts can be uploaded to a different bucket. This can be achieved with a parallel stage to the final stage of the pipeline
 
 ## CodePipeline Troubleshooting
 
-- For CodePipeline Pipeline/Action/Stage Execution State Changes we can use CloudWatch Events (EventBridge). Example:
+- For CodePipeline Pipeline/Action/Stage Execution State Changes, we can use CloudWatch Events (EventBridge). Example:
     - We can create events for failed pipelines
     - We can create events for cancelled stages
-- If CodePipeline fails a stage, the pipeline stops, and we cam get information in the console
-- If the pipeline can perform an action, we should make sure the IAM Service Role attached does have enough IAM permissions
+- If CodePipeline fails a stage, the pipeline stops, and we can get information about it in the console
+- If the pipeline cannot perform an action, we should make sure that the IAM Service Role attached does have enough IAM permissions
 - AWS CloudTrail can be used to audit AWS API calls
 
 ## Stage Actions
 
 - Stage actions can be parallel and sequential
-- Parallel actions are part of the same action group while sequential changes are port of different action groups
+- Parallel actions are part of the same action group while sequential changes are part of different action groups
 - Pipelines defined as JSON:
     - Stages can be defined with the `runOrder` value
-    - `runOrder` is an integer, stage group with lesser value are executed first
+    - `runOrder` is an integer, stage groups with lesser values are executed first
     - Parallel actions have the same `runOrder`
 
 ## Events/Webhooks/Polling
 
 - Events: 
     - Preferred way to start a pipeline
-    - Example: an event from EvenBridge starts the pipeline
+    - Example: an event from EventBridge starts the pipeline
     - Example: from GitHub we can use CodeStar Source Connection to trigger an event and start the pipeline
 - Webhooks:
     - Older way of triggering the start of a pipeline
     - A script can use a HTTP webhook to start a pipeline
 - Polling:
     - Regular checks from third party integration (such as Github)
-    - No recommended, they are not as great as events
+    - Not recommended, they are not as great as events
 
 ## CodePipeline Action Type Constraints for Artifacts
 
@@ -63,9 +63,9 @@
 
 ## Manual Approval Stage
 
-- It is an action group which requires a manual approval from somebody
-- We can send a notification to a SNS topic in case of a manual approval
-- Action Type Constraint for manual approval:
+- It is an action group which requires a manual approval from someone
+- We can send a notification to an SNS topic in case of a manual approval
+- Action Type Constraints for manual approval:
     - Owner is AWS
     - Action is Manual
 
@@ -105,13 +105,13 @@
 
 - CodePipeline can deploy CloudFormation templates as well
 - Works with CloudFormation StackSets to deploy across multiple AWS accounts and AWS regions
-- Actions modes:
+- Action modes:
     - Create or Replace a Change Set, Execute a Change Set
     - Create or Update a Stack, Delete a Stack, Replace a Failed Stack
 - Template Parameter Overrides:
     - We can specify a JSON object to override parameter values during runtime
     - We can retrieve a parameter value from CodePipeline Input Artifact
-    - All parameter names must be present in template
+    - All parameter names must be present in the template
     - Override types:
         - Static: use template configuration file (recommended)
         - Dynamic: use parameter overrides
@@ -135,4 +135,4 @@
 - Actions in our pipeline can be in different regions
 - S3 Artifact Stores must be defined in each region where we have actions
 - CodePipeline must have read/write access to these buckets
-- CodePipeline handles the copying of input arguments from one AWS region to other when performing cross-region actions (example: deploying CloudFormation templates)
+- CodePipeline handles the copying of input arguments from one AWS region to the other when performing cross-region actions (example: deploying CloudFormation templates)
