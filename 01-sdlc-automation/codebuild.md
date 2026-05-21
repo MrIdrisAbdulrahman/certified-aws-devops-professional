@@ -47,9 +47,9 @@
         - Execute commands after build, for example zip output    
 - Commands:
     - Each phase can have one or more commands to execute
-    - Each phase can have a `finally` block: the commands from this block is executed wether or not the actual commands from the `commands` block succeeded
+    - Each phase can have a `finally` block: the commands from this block is executed whether or not the actual commands from the `commands` block succeeded
 - Artifacts: 
-    - Files and folder which are kept after the build finished. These are essentially the build result or build output. Example: `.jar` packages
+    - Files and folders which are kept after the build finished. These are essentially the build result or build output. Example: `.jar` packages
     - Artifacts can be uploaded to S3 to be used later
 - Cache:
     - This are intermediary files or dependencies used for build
@@ -123,13 +123,13 @@ phases:
 ## Artifacts and S3
 
 - Build artifacts can be uploaded into S3
-- We can specify where to store artifact or have no artifacts (in case of testing or if we push to ECR)
+- We can specify where to store artifacts or have no artifacts (in case of testing or if we push to ECR)
 - Artifacts are encrypted by default. Also S3 can offer encryption by default
 
 ## CloudWatch Integration
 
 - **CloudWatch Logs**: any time a build is run, a new log stream is created for the build ID
-- **CloudWatch Metrics**: can give information about how many builds are successful, failed and the total number of build. Can also give information about the average duration of a build
+- **CloudWatch Metrics**: can give information about how many builds are successful, failed and the total number of builds. Can also give information about the average duration of a build
 - **CloudWatch Events**:
     - Schedule CodeBuild time to time: we can create a scheduled event to start a build for a CodeBuild project
     - React to events from CodeBuild, example invoke a Lambda function
