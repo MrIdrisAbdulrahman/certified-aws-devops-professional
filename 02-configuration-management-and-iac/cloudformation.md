@@ -14,14 +14,14 @@
     - Saving strategy: in dev, we can automate deletion of templates at 5PM and recreate the whole stack at 8AM in the morning
 - Productivity:
     - Ability to destroy and re-create an infrastructure on the cloud on the fly
-    - Automated generation of diagram for the templates
+    - Automated generation of diagrams for the templates
     - Declarative programming, no need to figure out ordering and orchestration
 - Separation of concerns: create many CF stacks for applications and layers
 
 ## How CloudFormation Works
 
-- Templates have to uploaded to S3 and then be references in CloudFormation
-- To update a template we can't edit previous ones. We have to re-upload a new version of the template to AWS
+- Templates have to be uploaded to S3 and then referenced in CloudFormation
+- To update a template, we can't edit previous ones. We have to re-upload a new version of the template to AWS
 - Stacks are identified by a name
 - Deleting a stack deletes every single artifact that was created by CloudFormation
 
@@ -43,18 +43,18 @@
     - Resources (MANDATORY): AWS resources declared in the template
     - Parameters: dynamic input for the templates
     - Mappings: static variables for the templates
-    - Outputs: references to what has be created
-    - Conditionals: list of conditions ot perform resource creation
+    - Outputs: references to what has to be created
+    - Conditionals: list of conditions for performing resource creation
 - Template helpers:
     - References
     - Functions
 
 ## CloudFormation Resources
 
-- Resources are the of CF template and they are mandatory
+- Resources are declared at the top of a CF template and are mandatory
 - They represent the different AWS components that will be created and configured
 - Resources are declared and reference each other
-- AWS figures out creation, updates and deletes of resources
+- AWS figures out creation, update and deletion of resources
 - Resource types identifiers are of the form of: `service-provider::service-name::data-type-name`. Example: `AWS::EC2::Instance`
 - We can create a dynamic number of resources using CloudFormation Macros and Transform
 - Almost every AWS service is supported. For those which are not supported, we can use CloudFormation Custom Resources as a workaround
