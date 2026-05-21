@@ -1,6 +1,6 @@
 # AWS Service Catalog
 
-- It is a self-service portal to launch a set of authorized AWS services of which configuration is predefined by admins
+- It is a self-service portal to launch a set of authorized AWS services of which its configuration is predefined by admins
 - Service Catalog is using CloudFormation under the hood
 - Service Catalog tasks:
     - Admin tasks:
@@ -8,7 +8,7 @@
         - Create Portfolio: collection of products
         - Assign IAM roles to portfolios
     - Users tasks:
-        - They presented with a product list
+        - They are presented as a product list
         - They will launch products
 - Service Catalog is used to create and manage catalogs of IT services that are approved by administrators on AWS
 - CloudFormation helps ensure consistency and standardization by admins
@@ -26,12 +26,12 @@
 
 ## Launch Constraints
 
-- It is an IAM Role assigned to a Product which allows an user to launch, update or terminate products with minimal IAM permissions
+- It is an IAM Role assigned to a Product which allows a user to launch, update or terminate products with minimal IAM permissions
 - Example: end-user has access to Service Catalog, all other permissions required are attached to the Launch Constraint IAM Role
 - The launch constraint IAM role must have the following permissions:
     - CloudFormation (Full Access)
     - Permission to AWS Services in the CloudFormation template
-    - Read Access to S3 Bucket which contains the CloudFormation template
+    - Read Access to an S3 Bucket which contains the CloudFormation template
 
 ## Continuous Delivery Pipelines with Service Catalog
 
