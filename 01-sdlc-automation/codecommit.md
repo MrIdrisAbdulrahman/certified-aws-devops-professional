@@ -48,7 +48,7 @@
 
 ## Monitoring With EventBridge
 
-- We can monitor CodeCommit events in EventBride near real-time
+- We can monitor CodeCommit events in EventBridge near real-time
 - We can monitor events such as: `pullRequestCreated`, `pullRequestStatusChanged`, `referenceCreated`, `commentOnCommitCreated`, etc.
 
 ## Migrate a Git Repository to CodeCommit
