@@ -37,9 +37,9 @@
 - Build/Test:
     - CodeBuild
     - Jenkins CI
-- Deploy:
+- Deployment:
     - CodeDeploy
-- Provision:
+- Provisioning (env, infra):
     - Elastic Beanstalk
     - CloudFormation
 - Orchestrate the steps above:
