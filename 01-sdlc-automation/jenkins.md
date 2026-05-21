@@ -1,6 +1,6 @@
 # Jenkins on AWS
 
-- Jenkins is an open source CICD tool
+- Jenkins is an open source CI/CD tool
 - It can replace CodeBuild, CodePipeline and CodeDeploy
 - It must be deployed in master/slave configuration. This would require Multi-AZ deploy on EC2
 - All projects must have a `Jenkinsfile` for configuration, similar to `buildspec.yml`
@@ -19,5 +19,5 @@
 - **Amazon EC2** plugin: if Jenkins notices that our build cluster is overloaded, it will start instances using the EC2 API and automatically connect them as Jenkins agents. When the load goes down, excess EC2 instances will be terminated
 - **AWS CodeBuild** plugin: official AWS plugin. Jenkins will send all the build jobs to CodeBuild
 - **Amazon Elastic Container Service** plugin: Jenkins agents will be launched in AWS ECS
-- **AWS CodePipeline** plugin: use Jenkins and CodePipeline together
-- **Artifact Manager on S3**: keep artifacts and pipeline stats on S3
+- **AWS CodePipeline** plugin: uses Jenkins and CodePipeline together
+- **Artifact Manager on S3**: keeps artifacts and pipeline stats on S3
