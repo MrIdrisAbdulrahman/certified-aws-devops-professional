@@ -1,7 +1,7 @@
 # EC2 Image Builder
 
 - It is a service which can be used to automate the creation of virtual machines or container images
-- We can automate the creation, maintain, validate and test EC2 AMIs
+- We can automate the creation, maintainance, validattion and testing of EC2 AMIs
 - Can be run on a schedule or we can use other automation to execute it
 - It is a free service (we pay for the underlying resources)
 - We can publish AMIs to multiple regions and multiple accounts
