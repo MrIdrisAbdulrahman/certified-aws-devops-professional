@@ -94,18 +94,18 @@ mainSteps:
 
 ## SSM Run Command
 
-- Used for execute documents (scripts) or just to run simple commands
+- Used for executing documents (scripts) or just running simple commands
 - Commands are executed across multiple instances (using resource groups)
 - Documents are either managed by AWS or created and managed by users
-- Run Command has builtin rate control/error control - progressively roll out commands to instances, in case of errors stop executing commands
+- Run Command has builtin rate control/error control - progressively rolling out commands to instances, in case of errors stopping command execution
 - Integrates with IAM and CloudTrail
 - SSM Run Command requires no SSH access to instances
 - The output of the command can be shown in the AWS SSM Run Command Console, or it can be sent to an S3 bucket or to CloudWatch Logs
-- Run Command can be evoked with Even Bridge
+- Run Command can be evoked with EventBridge
 
 ## SSM Automation
 
-- Systems Manager Automation simplifies common maintenance and deployment tasks of Amazon EC2 instances and other AWS resources. Automation enables to do the following:
+- Systems Manager Automation simplifies common maintenance and deployment tasks of Amazon EC2 instances and other AWS resources. Automation enables doing the following:
     - Build automations to configure and manage instances and AWS resources
     - Create custom runbooks or use pre-defined runbooks maintained by AWS
     - Receive notifications about Automation tasks and runbooks by using Amazon EventBridge
@@ -172,7 +172,7 @@ mainSteps:
 
 ### SSM Parameters Policies for Advanced Parameters
 
-- Allow assigning a TTL for a parameter to force updating or deleting sensitive data
+- Allow the assigning of a TTL for a parameter to force updating or deleting sensitive data
 - We can assign multiple policies at a time
 
 ### SSM Parameter Store CLI
@@ -199,11 +199,11 @@ mainSteps:
 - Patch Baselines: 
     - Defines which patches should and should not be installed on an instance
     - We have the ability to create custom Patch Baselines
-    - Patches can be auto-approved withing days of their release
+    - Patches can be auto-approved within days of their release
     - By default, only critical patches and security patches are installed
 - Patch Groups:
     - We can associate a set of instances with a specific Patch Baseline
-    - Instances should defined with the tag key `Patch Group`
+    - Instances should be defined with the tag key `Patch Group`
     - An instance can only be part of one Patch Group
     - A Patch Group can only be registered with one Patch Baseline
 - Patch Baseline types:
@@ -217,10 +217,10 @@ mainSteps:
 ## Maintenance Windows
 
 - It is a scheduled job (Cron job) in order to specify when the patch baselines can be applied to instances
-- We can set the duration of windows (up tp 24 hours)
+- We can set the duration of windows (up to 24 hours)
 - We can set a period before patching in order to stop initiating new tasks
-- Register targets: we have to register a target for which the patching has to be done. Targets can be based on tags, resource groups or single resource
-- Register a run command: we have to set a command (example RunPatchBaseline) which will execute the patches
+- Register targets: we have to register a target for which the patching has to be done. Targets can be based on tags, resource groups or a single resource
+- Register a run command: we have to set a command (eg. RunPatchBaseline) which will execute the patches
 
 ## SSM Inventory
 
@@ -238,8 +238,8 @@ mainSteps:
 
 - Allows to start a secure shell on a VM (EC2 or on-premises)
 - **Does not use SSH access and bastion hosts**
-- Only works for EC2 for now
-- Log actions done through secure shells to S3 and CloudWatch Logs
+- Only works for EC2 at present
+- It logs actions performed using a secure shell to S3 and CloudWatch Logs
 - IAM permissions: access SSM + write to S3 + write to CloudWatch
 - CloudTrail can intercept StartSessions events
 - AWS Secure Shell compared to SSH:
@@ -250,7 +250,7 @@ mainSteps:
 - IAM Permissions:
     - Control which user/groups can access Session Manager and to which instance they can connect
     - We can use tags to restrict access to only specific EC2 instances
-- Optionally, we can restrict commands an user can run in a session
+- Optionally, we can restrict commands a user can run in a session
 - SSM Session Manager with VPC Endpoints:
     - Used to connect to EC2 instances which are in a private subnet without internet access
     - Required endpoints and ports:
@@ -271,16 +271,16 @@ mainSteps:
 
 ## SSM Hybrid Environments (Hybrid Activations)
 
-- We can use SSM to manage on-premises servers, IoT devices, edge devices and virtual machines (example VMs provided by other cloud providers)
-- It requires from us to create a Hybrid Activation
+- We can use SSM to manage on-premise servers, IoT devices, edge devices and virtual machines (example VMs provided by other cloud providers)
+- It requires us to create a Hybrid Activation
 - When a Hybrid Activation is created, SSM provides an **Activation Code** and an **Activation ID** which will be used to set up the SSM agent on the on-premise instance
-- The instance id for EC2 instances starts with `i-` and for on-premise instances it starts with `mi-`
-- Managed on-premise instances can be tagged in SSM
+- The instance id for EC2 instances starts with `i-` and for on-premise instances starts with `mi-`
+- Managed on-premise instances (mi-) can be tagged in SSM
 
 ## IoT Greengrass Instance Activation
 
 - We can manage IoT Greengrass Core devices using SSM
-- We have to install SSM Agent on Greengrass Core devices, they will register themselves as managed node in SSM
+- We have to install the SSM Agent on Greengrass Core devices, they will register themselves as managed nodes in SSM
 - SSM Agent can be installed manually or deployed as a Greengrass Component (pre-built software module that we deploy directly to Greengrass Core devices)
 - Once the SSM Agent is installed on the device, we must define a Token Exchange Role (IAM Role for IoT core devices)
 - We must add permission to the Token Exchange Role to communicate with SSM
@@ -288,8 +288,8 @@ mainSteps:
 
 ## SSM Automations - Use Cases
 
-- Reduce costs by automatically start and stop EC2 instances and RDS DB instances
-- Reduce costs by automatically downsize EC2 instances and RDS DB instances
+- Reduce costs by automatically starting and stopping EC2 instances and RDS DB instances
+- Reduce costs by automatically downsizing EC2 instances and RDS DB instances
 - Build a golden AMI (EC2 Image Builder is a better option)
 - SSM Automations is integrated with AWS Config => remediate non-compliant resources
 
@@ -300,15 +300,15 @@ mainSteps:
     - Patches in Patch Manager
     - Associations in State Manager
 - Compliance data can be aggregated across multiple accounts/regions by syncing data to an S3 bucket using Resource Data Sync. This data can be analyzed by Athena and QuickSight
-- Compliance can be sent do Security Hub
+- Compliance info can be sent to Security Hub
 
 ## SSM OpsCenter
 
 - Allows us to view, investigate and remediate issues in one place (we don't need to navigate across different AWS services)
-- Contains: security issues, performance issues (example DynamoDB throttle), failures (example ASG failed to launch an instance)
+- Contains: security issues, performance issues (eg. DynamoDB throttle), failures (eg. ASG failed to launch an instance)
 - The goal of OpsCenter is to reduce the meantime to resolve issues
 - OpsCenter contains **OpsItems**:
     - Operational issues or interruptions that need investigation and remediation
     - These can be events, resources, AWS Config changes, CloudTrail logs, etc.
     - Provides recommended Runbooks to resolve issues
-- Supports both EC2 instances and on-premises managed nodes
+- Supports both EC2 instances and on-premise managed nodes
