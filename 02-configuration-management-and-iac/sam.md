@@ -5,7 +5,7 @@
 - SAML cli generates complex CloudFormation templates from SAM YAML code
 - Supports anything from CloudFormation: Outputs, Mappings, Parameters, Resources, etc.
 - SAM can be used with CodeDeploy to deploy Lambda functions
-- SAM can help use to run Lambda, API Gateway and DynamoDB locally
+- SAM can help run Lambda, API Gateway and DynamoDB locally
 
 ## Recipe
 
