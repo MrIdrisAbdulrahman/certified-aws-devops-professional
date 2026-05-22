@@ -2,7 +2,7 @@
 
 ***Elastic Beanstalk* is a developer centric view of deploying application on AWS.**
 - A managed service
-    - Instance configuration
+    - Instance configuration (partially managed by Beanstalk)
     - OS is handled by Beanstalk
     - Deployment strategy is configurable but performed by Beanstalk
     - Application code configurable
