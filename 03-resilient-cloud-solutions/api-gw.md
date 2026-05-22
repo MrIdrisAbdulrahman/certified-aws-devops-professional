@@ -6,7 +6,7 @@
 - Support for WebSockets protocol
 - Handles API versioning
 - Handles multiple environments (dev, test, prod)
-- Handles security (authentication and authorization)
+- Handles security (authentication & authorization)
 - Ability to create API keys => request throttling
 - Supports Swagger/OpenAPI import to quickly define APIs
 - Transform and validate requests
@@ -14,17 +14,17 @@
 - Integration types:
     - Lambda functions
     - HTTP: expose any HTTP end-points from the back-end
-    - Other AWS services, examples: AWS Step Function workflow
+    - Other AWS services, eg. AWS Step Function workflow
     - Mock
     - VPC Link
 
 ## API Gateway Endpoint Types
 
 - Edge-Optimized (default): for global clients
-    - Requests will be routed through the CloudFront Edge locations
+    - Requests will be routed through CloudFront Edge locations
     - API Gateway will still live in one region where it was created
 - Regional: for clients within the same region. Can be combined with CloudFront for control over caching strategies and distribution
-- Private: can only be access within the VPC using VPC endpoint (ENI)
+- Private: can only be accessed within a VPC using VPC endpoint (ENI)
 
 ## API Gateway Security
 
@@ -36,11 +36,11 @@
     - Certificate is provided by AWS Certificate Manager (ACM)
     - In case we are using an Edge-Optimized endpoint, the certificate has to be in `us-east-1` region
     - In case of a regional endpoint, the certificate has to be in the same region as the API Gateway
-    - We must set up a CNAME or an A alias record in Route53 for the certificate to be validated. This record should point ot our API Gateway instance
+    - We must set up a CNAME or an A alias record in Route53 for the certificate to be validated. This record should point to our API Gateway instance
 
 ## API Gateway - Deployment Stages
 
-- Making changes in the API Gateway does are not applied to the current stage until they are deployed
+- Making changes in the API Gateway does not apply to the current stage until after deployment
 - We need to make a "deployment" for the changes to take effect. Changes are deployed to Stages
 - Each stage has its own configuration parameters
 - Stages can be rolled back as the history of the deployments is kept
@@ -66,15 +66,15 @@
 - OpenAPI Spec documents can be written in YAML or JSON
 - Using OpenAPI we can generate SDKs for our applications
 - REST API request validation:
-    - We can configure API Gateway to perform basic validation on a API request before proceeding with the integration request
+    - We can configure API Gateway to perform basic validation on an API request before proceeding with the integration request
     - When the validation fails, API Gateway immediately fails the request and returns a 4xx error code
-    - This reduces unnecessary calls to the backed
+    - This reduces unnecessary calls to the backend
 
 ## API Gateway - Caching
 
 - Caching reduces the number of calls made to the backend
-- In case of request, API Gateway checks if a result was already cached and returns that if it exists, otherwise the request if forwarded to the backend
-- Default TTL (time to live) is 300 second (min is 0, max is 3600)
+- In case of a request, API Gateway checks if a result was already cached and returns it if it exists, otherwise the request if forwarded to the backend
+- Default TTL (time to live) is 300 seconds (min is 0, max is 3600)
 - Cached as defined per stage
 - It is possible to override cache settings per method
 - The cache is encrypted
@@ -100,13 +100,13 @@
     - We can override this setting per API basis
 - X-Ray:
     - We can enable it to get extra information about requests in API Gateway
-    - X-Ray with API Gateway + AWS Lambda give us a full picture for tracing an request
+    - X-Ray with API Gateway + AWS Lambda give us a full picture for tracing a request
 - CloudWatch Metrics can be used to monitor the API Gateway:
     - Metrics are per stage, we have the possibility to enable detailed metrics
     - Important Metics:
         - `CacheHitCount`, `CacheMissCount`: efficiency rate of the cache
         - `Count`: total number of API requests in a period
-        - `IntegrationLatency`: time between when the API Gateway relays a request to the backend and when it receives a response from the backend
+        - `IntegrationLatency`: time between when the API Gateway relays a request to and when it receives a response from the backend.
         - `Latency`: IntegrationLatency + the API Gateway overhead. **Max amount of time the API Gateway can perform a request is 29 seconds!**
         - `4XXError` & `5XXError`
 
@@ -130,12 +130,12 @@
     - `403`: Access Denied, WAF filtered request
     - `429`: Quota exceeded, Throttled
 - 5xx means server errors:
-    - `502`: Bad Gateway, usually we receive it for an incompatible output returned form a Lambda proxy integration and occasionally for out-of-order invocations due to heavy loads
+    - `502`: Bad Gateway, usually we receive it for an incompatible output returned from a Lambda proxy integration and occasionally for out-of-order invocations due to heavy loads
     - `503`: Service Unavailable
-    - `504`: Integration Failure, example the request of the backed timed out
+    - `504`: Integration Failure, eg. backend request timed-out
 
 ## Fronting Step Functions
 
 - API Gateway can expose step functions
-- When we expose a step function, we must select an Action for it (example: StartExecution)
+- When we expose a step function, we must select an Action for it (eg. StartExecution)
 - We also require a step execution role
