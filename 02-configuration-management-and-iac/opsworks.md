@@ -12,13 +12,13 @@
 - OpsWorks Stacks is a configuration management service which helps deploy applications using Chef Cookbooks
 - With OpsWorks we are managing infrastructure, configurations and the application in the same service
 - A **stack** is a set of layers, instances and related AWS resources whose configuration we would want to manage together
-- A **layer** is a blueprint for a set of EC2 instances. It specifies the instance's settings, associated resources, installed packages, profiles and security groups. We can add also recipes to lifecycle events such as set up, deploy, configure, discover resources
+- A **layer** is a blueprint for a set of EC2 instances. It specifies the instance's settings, associated resources, installed packages, profiles and security groups. We can also add recipes to lifecycle events such as set-up, deploy, configure, discover resources
 - **Auto healing**: if a stack is unhealthy, OpsWorks will re-provision that stack automatically
 - Instance types:
     - **24/7 instances**: Instances which are running all the time
     - **Time-based instances**: OpsWorks will automatically start and stop time-based instances based on a specified schedule
     - **Load-based instances**: OpsWorks will automatically start and stop instances based on response to CPU, memory and application load changes across all the instances in a layer
-- OpsWorks autoscaling is not as flexible as ASG. Instances has to be pre-created and they will be started based on time schedule or load
+- OpsWorks autoscaling is not as flexible as ASG. Instances have to be pre-created and they will be started based on a scheduled time or load
 - **Apps** represent code stored in a repository that we want to install on application server instances
 - **Deployments**: 
     - OpsWork will run a deploy or undeploy command on a given number of instances
@@ -44,6 +44,6 @@
 
 - Auto Healing:
     - For Amazon EBS-backed instance:
-        1. OpsWorks stops the EC2 instance and verifies that is sopped
+        1. OpsWorks stops the EC2 instance and verifies that it is stopped
         2. Starts the EC2 instance
 - CloudWatch Events: we can create rules for reacting to OpsWork instance changes
