@@ -2,12 +2,12 @@
 
 - Kinesis is a managed alternative to Apache Kafka
 - Great for application logs, metrics, IoT, clickstreams
-- Great for real-time big 
-- Data is automatically replicate to 3 AZs
+- Great for real-time big data streaming
+- Data is automatically replicated to 3 AZs
 - Kinesis offers 3 types of services:
     - Kinesis Streams: capture, process and store data streams
     - Kinesis Firehose: load streams into AWS data stores (S3, Redshift and OpenSearch)
-    - Kinesis Data Analytics: analyzer data streams with SQL or Apache Flink
+    - Kinesis Data Analytics: analyze data streams with SQL or Apache Flink
     - Kinesis Video Streams: capture, process and store video streams
 
 ## Kinesis Data Streams
@@ -43,11 +43,11 @@
     - We don't need to provision or manage the capacity
     - Default capacity provisioned (4 MB/s in or 4000 records per second)
     - Scales automatically based on observed throughput peak during the last 30 days
-    - We pau per stream per hour and data in/out per GB
+    - We pay per stream per hour and data in/out per GB
 
 ### Shards
 
-- One stream is made of many shards
+- One stream is made up of many shards
 - Billing is per shard provisioned, we can have as many shards as we want
 - Data can be sent in batches
 - The number of shards can evolve over time (reshard/merge)
@@ -64,7 +64,7 @@
 ### Security
 
 - We control access/authorization using IAM policies
-- Encryption in flights using HTTPS endpoints
+- Encryption in flight using HTTPS endpoints
 - Encryption at rest using KMS
 - We can implement our own encryption/decryption of data on client side
 - VPC Endpoints are available for Kinesis to access within VPC
@@ -72,7 +72,7 @@
 
 ### Limits
 
-- Producer: 1MB/s or 1000 messages/s at write PER SHARD other we get `ProducerThroughputException`
+- Producer: 1MB/s or 1000 messages/s at write PER SHARD or we get `ProducerThroughputException`
 - Consumer Classic: 
     - 2MB at read PER SHARD across all consumers
     - 5 API class per second PER SHARD across all consumers (if 3 different applications are consuming, possibility of throttling)
@@ -81,7 +81,7 @@
 
 - `GetRecords.IteratorAgeMilliseconds` CloudWatch Metric:
     - The difference between current time and when the last record of the `GetRecords` call was written to the stream
-    - Used tot rack the progress if the consumer (tracks read position)
+    - Used to track the progress of the consumer (tracks read position)
     - If we have `IteratorAgeMilliseconds = 0`, then the records that are being read are completely caught up with the producer
     - `IteratorAgeMilliseconds > 0` means we are not processing the records fast enough
 
@@ -90,7 +90,7 @@
 - It is a Java library
 - It uses DynamoDB to checkpoint offsets and to track other workers and share the work amongst them
 - Great for reading in a distributed manner
-- We can not have more KCL applications than shards (example: in case of 6 shards, we can have up to 6 application consumers)
+- We can not have more KCL applications than shards (eg. in case of 6 shards, we can have up to 6 application consumers)
 
 ## Amazon Kinesis Firehose
 
@@ -100,7 +100,7 @@
     - Buffer size: minimum 1 MB, we can set a higher number
 - We can load data into AWS destinations (S3, Redshift - COPY through S3, OpenSearch), into 3rd party destinations (such as Splunk, Datadog, New Relic, MongoDB, etc.) or into a custom destination using a HTTP Endpoint
 - Offers automatic scaling
-- Offers data transformation ability through AWS Lambda (ex: CSV => JSON)
+- Offers data transformation ability through AWS Lambda (eg. CSV => JSON)
 - Supports compression when target is S3 (GZIP, ZIP and SNAPPY)
 - We pay for the amount of data going through Firehose
 - Data is written in batches to the destinations
@@ -109,7 +109,7 @@
 ## Kinesis Data Streams vs Firehose
 
 - Kinesis Data Streams:
-    - Requires to write custom code (producer/consumer)
+    - Requires writing custom code (producer/consumer)
     - Offers real time (~200 ms latency for classic) performance
     - We must manage scaling (shard splitting/merging)
     - Data storage for 1 to 365 days, data can be replayed, streams can have multiple consumers
@@ -146,7 +146,7 @@
     - We get automatic provisioning of resources, parallel computation and automatic scaling
     - We get application backups: implemented as checkpoints and snapshots
 - Flink is a lot more powerful than a simple SQL query language
-- Flink does not supports reading data from Firehose (use Kinesis Analytics for SQL instead)
+- Flink does not support reading data from Firehose (use Kinesis Analytics for SQL instead)
 
 ## Machine Learning on Kinesis Data Analytics
 
