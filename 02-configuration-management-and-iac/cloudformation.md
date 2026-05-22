@@ -122,7 +122,7 @@
 - All the values are hardcoded within a template
 - Mappings are great when we know in advance all the values that can be taken by an input
 - They offer a safer control over a template
-- To access a mapping, we can use `Fn::FinInMap` function:
+- To access a mapping, we can use `Fn::FindInMap` function:
     ```
     !FindInMap [MapName, TopLevelKey, SecondLevelKey]
     ```
