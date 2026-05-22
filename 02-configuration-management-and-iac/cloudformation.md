@@ -132,9 +132,9 @@
 - Output sections are optional
 - Output values can be imported into other stacks
 - We can also view the outputs in the AWS console or using the AWS CLI
-- It is the best way to perform collaboration across stacks, different stacks can be handled an maintained by different people
-- We can not delete a CloudFormation stack if its outputs are being references by another stack
-- Output `Export` block: has to be specified in order the the output to be able to be imported in another template
+- It is the best way to perform collaboration across stacks, different stacks can be handled and maintained by different people
+- We can not delete a CloudFormation stack if its outputs are being referenced by other stacks
+- Output `Export` block: has to be specified to allow for it to be imported into another template
 - `!ImportValue` or `Fn::ImportValue`: imports an output into a stack 
 
 ## CloudFormation Conditions
@@ -152,7 +152,7 @@
     - `Fn::If`
     - `Fn::Not`
     - `Fn::Or`
-- Using a condition: they can be applied to resources, outputs, etc.
+- Using a condition: conditions can be applied to resources, outputs, etc.
 - Example of using a condition on a resource:
     ```yaml
     Resources:
@@ -168,7 +168,7 @@
     - Resources: returns the physical ID of the underlying resource
 - `Fn::GetAtt` (`!GetAtt`):
     - Attributes are attached to any resources we create
-    - We can retrieve exposed attributes of any resources using this function
+    - We can retrieve exposed attributes of any resource using this function
 - `Fn::FindInMap`:
     - We use this function to return a named value from a specific key
 - `Fn::ImportValue`:
@@ -190,13 +190,13 @@
     - If we want to get rid of the whole stack on failure, we can set `OnFailure=DELETE`
 - Stack update fails:
     - The stack automatically rolls back to the previous known working state
-    - We can see the in the logs what happened and what are the error messages
-- In case of a rollback failure happens we have to manually fix the issue and then use `ContinueUpdateRollback` API from Console
+    - We can see in the logs what happened and what are the error messages
+- In case a rollback failure happens, we have to manually fix the issue and then use `ContinueUpdateRollback` API in the Console.
 
 ## CloudFormation Service Role
 
 - It is an IAM role that allows CloudFormation to create/update/delete stacks on our behalf
-- It can be used to give the ability to users to create/update/delete the stack resources even if they don't explicitly have permission to work with each resource from the stack
+- It can be used to give the ability to users to create/update/delete stack resources even if they don't explicitly have permission to work with each resource from the stack
 - The user must have `iam:PassRole` permission
 
 ## CloudFormation Capabilities
@@ -212,9 +212,9 @@
 - Extra safety measure to preserve and backup resources
 - `DeletionPolicy=Delete`:
     - Default for all resources, excluding RDS db cluster resources, where the default is snapshot 
-    - To delete an S3 bucket, we have to delete everything first from the bucket
+    - To delete an S3 bucket, we have to first delete everything from the bucket
 - `DeletionPolicy=Retain`:
-    - To be specify on resource to preserve/backup in case of CloudFormation deletes
+    - To be specified on a resource to preserve/backup in case of CloudFormation delete actions
     - Works for any resource and nested stacks
 - `DeletionPolicy=Snapshot`:
     - Works on EBS volumes, ElastiCache cluster, ElastiCache ReplicationGroup, RDS database instance, RDS database cluster, Redshift cluster
@@ -240,7 +240,7 @@
     - Fetch an AMI id (the old way)
 - Custom resources are backed by either Lambda functions (most common) or an SNS topic
 - To define a custom resource we have to use the `ServiceToken` property which has to be an ARN to a Lambda function or SNS topic
-- There will be an event passed to the Lambda which contains the request type (create, update, delete) and the response url (the url for callback from the function). We can also pass some parameters as resource properties (key-value pairs) to the Lambda
+- There will be an event passed to the Lambda function which contains the request type (create, update, delete) and the response url (the url for callback from the function). We can also pass some parameters as resource properties (key-value pairs) to the function.
 
 ## Dynamic References
 
@@ -254,10 +254,10 @@
 
 ## User Data in EC2 for CloudFormation
 
-- We can have user data at EC2 instance launch through console
+- We can have user data at EC2 instance launch through the console
 - This also can be included in CloudFormation
 - **The entire script should be passed through the function Fn::base64**
-- All the log of the user data will be stored in `/var/log/cloud-init-output.log`
+- All user data log entires will be stored in `/var/log/cloud-init-output.log`
 
 ## CloudFormation Helper Scripts
 
@@ -266,29 +266,29 @@
     - What if we want to evolve the state of the EC2 instance without terminating it and creating a new one?
     - How do we know if the User Data script was successfully completed?
 - Solution: **CloudFormation Helper Scripts** : Python scripts that come directly on Amazon Linux AMIs, or they can be installed using `yum` or `dnf` on non-Amazon Linux AMIs
-- CloudFormation Helper Scripts are to following: `cfn-init`, `cfn-signal`, `cfn-get-metadata`, `cfn-hup`
+- CloudFormation Helper Scripts are for performing the following: `cfn-init`, `cfn-signal`, `cfn-get-metadata`, `cfn-hup`
 
 ### cnf-init
 
 - `AWS::CloudFormation::Init`:
-    - A block of configuration that belongs to `Metadata` block
+    - A block of configuration that belongs to the `Metadata` block
     - Contains the following:
         - Packages: used to download and install pre-packaged apps and components of Linux/Windows
         - Groups: define user groups
         - Users: define users and to which group they belong
         - Sources: download files and archives and place them on the EC2 instance
-        - Files: create files on the EC2 instance using inline text or pull files from an URL
+        - Files: create files on the EC2 instance using inline text or pull files from a URL
         - Commands: series of shell commands
         - Services: launch a list of services
-- cnf-init is used ti retrieve and interpret the resource metadata, installing packages, creating files and starting services
-- With the cfn-init script it helps make complex EC2 configurations readable
+- cnf-init is used to retrieve and interpret resource metadata, installing packages, creating files and starting services
+- The cfn-init script helps make complex EC2 configurations readable
 - The EC2 instance will query the CloudFormation service to get the init data
-- Logs will be available in `/var/log/cfn-init.log` file
+- Logs will be available in the `/var/log/cfn-init.log` file
 
 ### cfn-signal and Wait Conditions
 
 - Used to tell CloudFormation that the EC2 instance got properly configured after `cfn-init` script finished
-- We have to run the `cfn-signal` script right after the `cfn-init` script finished. This will tell CloudFormation if the init script succeeded or not
+- We have to run the `cfn-signal` script right after the `cfn-init` script finishes. This will tell CloudFormation if the init script has succeeded or not
 - WaitConditions: tells CloudFormation to wait until it receives a signal from `cfn-signal`
     - We block the template until it receives a signal from `cfn-signal`
     - We attach a `CreationPolicy`: how many signal we want to see and for how much we want to wait
@@ -296,7 +296,7 @@
     - We have to ensure the AMI has the CloudFormation scripts installed
     - We have to verify the `cfn-init` and `cfn-signal` commands were successfully run on the instance. We can view the logs such as `/var/log/cloud-init.log` or `/var/log/cnf-init.log`
     - We can retrieve the logs by logging into the instance, but we have to disable rollback on failure in order for CloudFormation to not delete the instance
-    - The instance must have connection to the internet. If the instance is in a VCP, it should be able to connect to the internat using a NAT gateway
+    - The instance must have connection to the internet. If the instance is in a VPC, it should be able to connect to the internet using a NAT gateway
 
 ### cfn-hup
 
@@ -306,20 +306,20 @@
 
 ## CloudFormation Nested Stacks
 
-- They allow to isolate repeated patterns, common components in separate stacks and call them from other stack
+- They allow for isolation of repeated patterns, common components in separate stacks and call them from other stacks
 - Nested stacks are considered to be best practice
-- To update a nested stack, alway update the parent (root stack)
-- Nested stacks can have nested stacks in themselves
+- To update a nested stack, always update the parent (root stack)
+- Nested stacks can themselves have nested stacks in them
 - Cross Stacks vs Nested Stacks:
     - Cross Stacks:
         - Helpful when stacks have different lifecycles
-        - The use outputs exported by other stacks
+        - They use outputs exported by other stacks
     - Nested Stacks:
-        - Helpful when components must be re-used, example a properly configured Application Load Balancer
+        - Helpful when components must be re-used, eg. a properly configured Application Load Balancer (ALB)
 
 ## CloudFormation - `DependsOn`
 
-- It is a way to define a specific resource should be created after another one was already created
+- It is a way to define that a specific resource should be created after another resource's creation
 
 ## CloudFormation StackSets
 
@@ -343,7 +343,7 @@
 ## CloudFormation ChangeSets
 
 - When we update a stack, we need to know what will change before the changes themselves are applied
-- ChangeSets wont tell us in advance if the update will be successful
+- ChangeSets wouldn't tell us in advance if the update will be successful or not
 - For Nested Stacks we will see the changes across all the stacks
 
 ## CloudFormation Drift Detection
@@ -354,9 +354,8 @@
     - We can use CloudFormation drift detection on StackSets as well
     - Performs drift detection on the stack associated with each stack instance in the StackSet
     - If the current state of a resource in a stack varies from the expected state:
-        - The stack is considered drifted
+        - The stack is considered to have drifted
         - The stack instance that the stack is associated with is considered drifted
-        - The StackSet is considered drifted
     - Drift detection identifies unmanaged changes that happen outside of CFN
     - Changes made through CloudFormation to a stack directly (not at the StackSet level) are not considered drifted (it is not a best practice)
     - We can stop drift detection on a StackSet
@@ -365,12 +364,12 @@
 ## Deploying Lambda Functions using CloudFormation
 
 - Inline: we can define the Lambda code inside the CF template
-    - The code for the Lambda function should be defined under `Code ZipFile` key which should specify that its content is a multi line content (use the pipe operator for this `|`)
+    - The code for the Lambda function should be defined under `Code ZipFile` key which should specify that its content is a multi-line content (use the pipe operator for this `|`)
     - Restrictions: 
         - Code should be limited in length 
         - We can not have dependencies
 - Zip: we can zip the function and its dependencies and upload the archive into an S3 bucket
-    - The code for the lambda can be references under `Code S3Bucket` tag
+    - The code for the lambda can be referenced under `Code S3Bucket` tag
     - We have to specify the bucket and location for the zip in S3
     - We can also reference the version of the archive by `S3ObjectVersion`
 
