@@ -4,8 +4,8 @@
 - The CDK framework contains high level components called *constructs*
 - The code is transpiled into a CloudFormation template (JSON/YAML)
 - With CDK we can deploy infrastructure and application runtime code together
-    - This is great fro Lambda functions
-    - Or great for Docker containers which can be deploy to ECS/EKS
+    - This is great for Lambda functions
+    - Or great for Docker containers to be deployed on ECS/EKS
 
 ## CDK vs SAM
 
