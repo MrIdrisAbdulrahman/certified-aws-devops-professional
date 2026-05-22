@@ -1,6 +1,6 @@
 # Elastic Beanstalk
 
-***Elastic Beanstalk* is a developer centric view of deploying application on AWS.**
+***Elastic Beanstalk* is a developer centric view of deploying applications on AWS.**
 - A managed service
     - Instance configuration (partially managed by Beanstalk)
     - OS is handled by Beanstalk
@@ -32,29 +32,29 @@
     - Multi Container Docker
     - Pre-configure Docker
     - Packer Builder
-    - Write our own custom platforms (If the any of the above is not supported)
+    - Write our own custom platforms (If any of the above is not supported)
 - Web Server Tier vs. Worker Tier:
 
 ![Web Server Tier vs. Worker Tier](images/web-server-vs-worker.png)
 
 ## Elastic Beanstalk Deployment Modes
 
-- **Single Instance deployment**: good for development, we get 1 ec2 instance in 1 ASG and 1 Elastic IP. DNS names maps straight ot the Elastic IP
+- **Single Instance deployment**: good for development, we get 1 ec2 instance in 1 ASG and 1 Elastic IP. DNS names map straight to the Elastic IP
 - **High Availability with Load Balancer**: great for production, we have an ASG across multiple AZs
 - Deployment updates:
-    - **All at once**: we deploy all our applications in on go. Fastest, but instances have a downtime. No additional cost is applied while deploying
-    - **Rolling**: update e few instances at a time, move onto next set of instances (bucket) if the first set was healthy. The application will run bellow capacity for a given period (bucket size). At some point the application will run both versions. No additional cost is encountered during deployment
-    - **Rolling with additional batches**: similar deployment procedure as the **rolling** approach with the difference of having an additional batch started at the beginning of deployment with the newer version of the application. Afterwards, the older instanced are gradually moved to newer version. While deploying, both application version will be running at the same time. Minor additional cost may be encountered since the additional batch will be present until the deployment is finished.
+    - **All at once**: we deploy all our applications in one go. Fastest, but instances have a downtime. No additional cost is applied while deploying
+    - **Rolling**: update a few instances at a time, move onto the next set of instances (bucket) if the first set was healthy. The application will run bellow capacity for a given period (bucket size). At some point the application will run both versions. No additional cost is encountered during deployment
+    - **Rolling with additional batches**: similar deployment procedure as the **rolling** approach with the difference of having an additional batch started at the beginning of deployment with the newer version of the application. Afterwards, the old instances are gradually moved to the new application version. While deploying, both application versions will be running at the same time. Minor additional cost may be encountered since the additional batch will be present until the deployment is finished.
     - **Immutable**: new version of the application is deployed to an entirely new ASG. If the new version passes the initial validation, the old ASG is terminated. Deployment will cause 0 downtime. The additional cost encountered while deploying is the highest compared to other deployment types.
 
 ### Blue / Green Deployment
 
 - This is not a direct feature of Elastic Beanstalk
 - Zero downtime and release facility
-- Create a new staging environment and deploy our newest version there
-- The new environment (green) can be validated independently and roll back if there's issues
+- Creating a new staging environment and deploying our newest version there
+- The new environment (green) can be validated independently and rolled back if there are issues
 - Route 53 can be setup using weighted policies to redirect a little bit of traffic to the staging environment
-- Using the elastic beanstalk console, we can "swap URLs" when with the testing environment
+- Using the elastic beanstalk console, we can "swap URLs" with the testing environment
 - This is a manual feature, it's not directly embedded in EB
 
 ### Traffic Splitting
@@ -77,10 +77,10 @@
 - Elastic Beanstalk can store at most 1000 application versions
 - When this limit is reached, we wont be able to deploy a new version
 - In order to be able to deploy again, we have to remove older versions
-- To phase out old versions, we can use a lifecycle policy
+- To phase out older versions, we can use a lifecycle policy
 - This policy can be based on:
-    - Time (remove versions which are older than...)
-    - Space (remove older versions if we have more versions than...)
+    - Time (remove versions which are older than ...)
+    - Space (remove older versions if we have more versions than ...)
 - Currently used versions are not deleted
 - There is an option to not delete source bundles from S3, only from beanstalk interface
 
