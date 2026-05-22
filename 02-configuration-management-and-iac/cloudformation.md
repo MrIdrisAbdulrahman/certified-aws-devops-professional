@@ -65,9 +65,9 @@
 - Parameters are a way to provide inputs to AWS CloudFormation template
 - They are important if we want to:
     - Reuse templates across multiple projects
-    - Provide some input when executing the template, since some template may be unknown before execution
-- Parameters do have a type, preventing some errors before execution
-- Parameters can be controller by all of these settings:
+    - Provide some input when executing the template, since some template parameter inputs may be unknown before execution
+- Parameters do have a type, preventing errors before execution
+- Parameters can be controlled by all of the below settings:
     - Types:
         - `String`
         - `Number`
