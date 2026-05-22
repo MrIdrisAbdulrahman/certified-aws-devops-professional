@@ -150,7 +150,7 @@
 - Redirect HTTP to HTTPS:
     - Instances can be configured to redirect traffic
     - Or ALB can be configured with a rule as well
-    - Health checks should ne be redirected from the ALB
+    - Health checks should not be redirected from the ALB
 
 ## EB CLI
 
@@ -214,7 +214,7 @@
 
 ## .ebextensions for Configs
 
-- Configurations for EB can be set in ab .ebextensions folder
+- Configurations for EB can be set in a .ebextensions folder
 - Every configuration file in that folder should have the extension of `.config`
 - .ebextensions reference: [https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/ebextensions.html](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/ebextensions.html)
 - Configuration options for .ebextensions: [https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options-general.html](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options-general.html)
@@ -238,16 +238,16 @@
 - There are 2 types of commands:
     - `commands`: the commands run before the application and web server are set up and the application version file is extracted
     - `container_commands`: 
-        - Can be used to execute commands that affect our application source code. Container commands run after the application ad web server have been set up and the application version archive has ben extracted but before the application version is deployed
+        - Can be used to execute commands that affect our application source code. Container commands run after the application and web server have been set up and the application version archive has ben extracted but before the application version is deployed
         - `leader_only` flag: can be used if we want the command to be executed by a single EB instance
 
 ## Application Versions
 
 - Every time the application is deployed, a new application version is created
-- We can see all the application versions in EB console under "Application version"
+- We can see all the application versions in the EB console under "Application version"
 - EB has a maximum limit of how many application versions we can have, the value of this is 1000
 - In order to remove older application versions, we can set up a lifecycle policy
-- If application version is deployed to an environment, it wont be deleted
+- If application version is deployed to an environment, it wouldn't be deleted
 
 ## Rebuild an Environment
 
