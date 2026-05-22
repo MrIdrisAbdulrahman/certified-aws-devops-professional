@@ -41,7 +41,7 @@
 
 - We need to install the SSM agent on the systems we want to control
 - The agent is by default installed on Amazon Linux and some Ubuntu AMIs
-- If an instance can not be controlled by the agent, the issue is probably with the agent on the IAM role is missing to allow SSM actions
+- If an instance can not be controlled by the agent, the issue is probably with the agent or the IAM role is missing to allow SSM actions
 
 ## AWS Tags and Resource Groups
 
@@ -60,9 +60,9 @@
 ## AWS SSM Documents
 
 - SSM Documents are written in JSON or YAML
-- In SSM Documents we define parameters and actions. Documents are then executed by a specific service
+- We define parameters and actions in SSM Documents. These are then executed by a specific service
 - Documents are either managed by AWS or created and managed by users
-- Documents can be 4 different types:
+- Documents can be of 4 different types:
     - Command
     - Automation
     - Policy
