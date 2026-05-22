@@ -12,10 +12,10 @@
 - EC2 Launch Type:
     - We must provision and maintain the infrastructure (EC2 instances)
     - Each EC2 instance must run the ECS Agent to register itself to the ECS Cluster
-    - AWS takes care to starting/stopping containers
+    - AWS takes care of starting/stopping containers
 - Fargate Launch Type:
     - We do not provision the infrastructure (no EC2 instances to manage)
-    - It is considered to by serverless offering
+    - It is considered to be a serverless offering
     - We just have to create task definitions and AWS will run our containers
 
 ## ECS - IAM Roles for ECS
@@ -29,18 +29,18 @@
 - ECS Task Role (valid for both EC2 and Fargate LaunchTypes):
     - IAM Role attached to the ECS tasks
     - Allows each task to have a specific role
-    - We can use different roles different ECS Services we run
+    - We can use different roles for the different ECS Services we run
     - Task Roles are defined in the task definition
 
 ## ECS Load Balancer Integration
 
-- Application Load Balancer is supported for most use cases
-- Network Load Balancer is recommended for high throughput/high performance use case, **or to pair with AWS PrivateLink** (used for private integration with the API Gateway)
-- Classic Load Balancer is supported but not recommended. It does not provide any advanced features and it does not support Fargate
+- Application Load Balancer (ALB) is supported for most use cases
+- Network Load Balancer (NLB) is recommended for high throughput/high performance use cases, **or to pair with AWS PrivateLink** (used for private integration with the API Gateway)
+- Classic Load Balancer (CLB) is supported but not recommended. It does not provide any advanced features and it does not support Fargate
 
 ## ECS Task Definition
 
-- Task definitions are metadata in JSON format containing information how to run a Docker container
+- Task definitions are metadata in JSON format containing information about how to run a Docker container
 - It contains information about:
     - Image name
     - Port Binding for container and host
@@ -51,29 +51,29 @@
 ## ECS Service
 
 - ECS services define how many tasks should run and how they should be running
-- They ensure that the number of tasks desired are running across fleet of EC2 instances
+- They ensure that the number of tasks desired are running across a fleet of EC2 instances
 - ECS services can be linked to an Elastic Load Balancer (NLB/ALB)
 
 ## ECS Data Volumes (EFS)
 
 - We can use Amazon EFS file systems to mount them to ECS tasks
 - Works with both EC2 and Fargate launch types
-- Tasks running in any AZ will share the same data in EFS file system
+- Tasks running in any AZ will share the same data on an EFS file system
 - Fargate + EFS =  Serverless
 - Use cases for EFS usage: persistent multi-AZ shared storage for containers
 - Amazon S3 cannot be mounted as a file system! (sort of, this is what the exam expects)
 
 ## ECS - Auto Scaling
 
-- Service Auto Scaling (optional): we can configure the minimum number of tasks, maximum number of tasks and the desired number of task. It is similar to EC2 auto scaling
+- Service Auto Scaling (optional): we can configure the minimum & maximum number of tasks, and the desired number of tasks. It is similar to EC2 auto scaling
 - We can scale based on the following metrics:
     - ECS Service Average CPU Utilization
     - ECS Service Average Memory Utilization
     - ALB Request Count Per Target - metric coming from the ALB
 - Scaling policies:
-    - **Target Tracking**: scale based on target value for a specific CloudWatch metroc
+    - **Target Tracking**: scaling based on target value for a specific CloudWatch metric
     - **Step Scaling**: requires alarms to increase and decrease the number of tasks
-    - **Scheduled Scaling**: scale based on a predefined date/time
+    - **Scheduled Scaling**: scaling based on a predefined date/time
 - ECS Service Auto Scaling (task level) != EC2 Auto Scaling (instance level)
 - Fargate Auto Scaling is much easier to manage
 - Auto Scaling EC2 instances:
@@ -113,13 +113,13 @@
 ## Elastic Beanstalk + ECS
 
 - We can run Elastic Beanstalk in single and multi Docker container mode
-- Multi Docker helps run multiple containers per EC2 instance in EB
+- Multi Docker mode helps run multiple containers per EC2 instance in EB
 - EB multi container mode will create:
     - ECS cluster
     - EC2 instances, configured to use the ECS cluster
     - Load Balancer (in high availability mode)
     - Task definitions and execution
-- Requires a config file named **Dockerrun.aws.json** which has to be placed a the root of the source code
+- Requires a config file named **Dockerrun.aws.json** which has to be placed at the root of the source code
 
 ## ECS CI/CD Pipeline
 
