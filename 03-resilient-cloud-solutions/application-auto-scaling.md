@@ -1,6 +1,6 @@
 # AWS Application Auto Scaling
 
-- It is a service which role is to monitor our apps and automatically adjust capacity to maintain steady and predictable performance at lowest cost
+- It is a service whose role is to monitor our apps and automatically adjust capacity to maintain steady and predictable performance at the lowest possible cost
 - From a single place we can manage auto scaling of multiple resources across multiple services
 - We point to our app and select the services and resources we want to scale (no need to setup alarms and scaling actions for each service)
 - To search for resources/services we can use CloudFormation Stacks, Tags or EC2 Auto Scaling Groups
