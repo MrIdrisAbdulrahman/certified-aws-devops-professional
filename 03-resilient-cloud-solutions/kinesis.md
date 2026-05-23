@@ -4,7 +4,7 @@
 - Great for application logs, metrics, IoT, clickstreams
 - Great for real-time big data streaming
 - Data is automatically replicated to 3 AZs
-- Kinesis offers 3 types of services:
+- Kinesis offers 4 types of services:
     - Kinesis Streams: capture, process and store data streams
     - Kinesis Firehose: load streams into AWS data stores (S3, Redshift and OpenSearch)
     - Kinesis Data Analytics: analyze data streams with SQL or Apache Flink
