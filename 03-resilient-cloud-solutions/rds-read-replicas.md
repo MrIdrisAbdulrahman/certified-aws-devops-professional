@@ -1,14 +1,14 @@
 # RDS Read Replicas for Read Scalability
 
 - Read replicas help us to scale our read operations
-- We can create up to 15 read replicas within the same AZ, cross AZ or cross region
+- We can create up to 15 read replicas within the same AZ, cross AZ or cross-region
 - Replication is **async** between the RDS and replicas => reads are eventually consistent
 - Replicas can be promoted as standalone databases
 
 ## Read Replica Use Cases
 
 - Read replicas are used for reading => only `SELECT` kind of statements should be executed on them
-- Example of use case: analytics on top of the main database which can cause performance degradation of the main DB
+- Example use case: analytics on top of the main database which can cause performance degradation of the main DB
 
 ## Read Replica Network Cost
 
@@ -18,7 +18,7 @@
 ## RDS Multi AZ (Disaster Recovery)
 
 - It is a synchronous replication to another stand-by database in another AZ
-- We have only one DNS name for the database, the failover in case of a disaster happens automatically => **will increaser availability**
+- We have only one DNS name for the database, the failover in case of a disaster happens automatically => **will increase availability**
 - Failover happens automatically in case of an AZ outage, loss of networking connectivity or instance storage failure
 - No manual intervention required
 - **Not used for scaling!**
@@ -50,4 +50,4 @@
     - Up to 5 secondary regions, can be used for reads only. Replication lag is less than 1 second
     - We can have up to 16 read replicas per secondary region
     - In case of a disaster, the RTO for promoting another region is less than 1 minute
-    - Typical cross-region replication takes less then 1 second
+    - Typical cross-region replication takes less than 1 second
