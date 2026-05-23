@@ -3,7 +3,7 @@
 - ElastiCache is a service offering managed Redis or Memcached instances
 - Caches are in-memory databases with really high performance and low latency
 - Caches help reduce load from databases for read intensive workloads
-- AWS takes cares of OS maintenance/patching, optimizations, setup, configuration, monitoring, failure recovery and backups for cache instances
+- AWS takes care of OS maintenance/patching, optimization, setup, configuration, monitoring, failure recovery and backups for cache instances
 
 ## ElastiCache Solution Architectures
 
@@ -24,7 +24,7 @@
 | Read Replicas to scale reads and have high availability | No high availability                                |
 | Data durability using AOF persistance                   | No persistance of data                              |
 | Backup and restore features                             | No backup and restore                               |
-| Supports *Sets* a *Sorted Sets*                         | Has a multi-threaded architecture                   |
+| Supports *Sets* and *Sorted Sets*                       | Has a multi-threaded architecture                   |
 
 ## ElastiCache Replication
 
@@ -33,15 +33,15 @@
     - Replication is asynchronous
     - Primary node is used for reads and writes
     - Replicas can be used for reads only
-    - We have on shard, all the nodes have all the data
-    - We have guarding against data loss  if a node fails
+    - We have one shard, all the nodes have all the data
+    - We have guarding against data loss if a node fails
     - Multi-AZ is enabled by default for failover
     - Helpful to scale read performance
     - We have 2 kinds of scaling:
         - Horizontal: Scale out/in by adding or removing read replicas (max 5 read replicas)
         - Vertical:
-            - Scale up/down by having larger or a smaller node type
-            - ElastiCache will internally create a new node groups, then data replication will happen, finally the DNS will be updated
+            - Scale up/down by having a larger or a smaller node type
+            - ElastiCache will internally create new node groups, then data replication will happen, finally the DNS will be updated
 - **Cluster Mode Enabled**:
     - Data is partitioned across multiple shards
     - The data is divided between shards
@@ -56,7 +56,7 @@
 
 ## Redis Auto Scaling
 
-- We can have auto scaling when we have Cluster Mode Enabled
+- We can have autoscaling when we have Cluster Mode Enabled
 - We can automatically increase/decrease the desired shards or replicas
 - Auto scaling supports both **Target Tracking** and **Scheduled Scaling Policies**
 - To connect to the cluster it is recommended to use the Cluster's **Configuration Endpoint**
