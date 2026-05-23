@@ -3,8 +3,8 @@
 - It is a highly available, scalable, fully managed and *authoritative* DNS
     - Authoritative: the customer can update the DNS records
 - Route 53 is also a Domain Registrar
-- We have the ability to check the health of our resources to which we create DNS records
-- It is the only AWS service which provides 100% availability SLA
+- We have the ability to check the health of our resources for which we create DNS records
+- It is the only AWS service which provides a 100% availability SLA
 
 ## DNS Records
 
@@ -43,11 +43,11 @@
 - They can be associated with health checks
 - Use cases: load balancing between regions, testing new application versions, etc.
 - We can assign a weight of 0 to a record to stop sending traffic to the resource
-- If all the records have weight of 0, then all the resources will resolved equally
+- If all the records have weight of 0, then all the resources will be resolved equally
 
 ### Latency-based
 
-- The hosted zone will resolve the resource that has the least latency for the requestor
+- The hosted zone will resolve the resource that has the least latency for the requester
 - Helpful when latency is a priority for the users
 - Latency is based on traffic between users and AWS Regions
 - Records can be associated with health checks
