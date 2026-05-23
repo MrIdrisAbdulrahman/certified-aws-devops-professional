@@ -3,27 +3,27 @@
 - NoSQL serverless database
 - Fully managed, highly available with replication across 3 AZs
 - Scales to massive workloads, distributed
-- Millions records per seconds, trillions of rows, 100TB of storage
+- Millions of records per seconds, trillions of rows, 100TB of storage
 - Fast and consistent in performance (low latency retrieval)
 - Integrates with IAM for security and administration
-- Enables event driven programming
+- Enables event-driven programming
 - Low cost
 - Provides **Standard** and **Infrequent Access** (IA) tables classes
 
 | Traditional databases                                      | NoSQL
-| ---------------------------------------------------------- | ------------------------------------------------------------- |
-| Traditional applications leverage RDBMS databases          | Non-relational, **distributed** databases                     |
-| SQL query language                                         | Many different query languages, SQL can be one                |
-| Strong requirements about how the data should be modelled | All the data should be present in one row                     |
-| Ability to do joins, aggregations and computations         | Do not support join, can't perform aggregations such as "SUM"  |
-| Vertical scaling                                           | **Horizontal scaling**                                        |
+| ---------------------------------------------------------- | -----------------------------------------------------------------|
+| Traditional applications leverage RDBMS databases          | Non-relational, **distributed** databases                        |
+| SQL query language                                         | Many different query languages, SQL can be one                   |
+| Strong requirements about how the data should be modelled  | All the data should be present in one row                        |
+| Ability to do joins, aggregations and computations         | Does not support join, can't perform aggregations such as "SUM"  |
+| Vertical scaling                                           | **Horizontal scaling**                                           |
 
 ## DynamoDB Basics
 
 - Made of **tables**
-- Each tables has a **primary key**
-- Each table can have inf. number of rows(items)
-- Each item can have **attributes** (columns, but the can be nested)
+- Each table has a **primary key**
+- Each table can have inf. number of rows (items)
+- Each item can have **attributes** (columns, but they can be nested)
 - Max size of an item is 400KB
 - Data types supported:
     - Scalar: String, Number, Binary, Boolean, Null
@@ -32,11 +32,11 @@
 
 ## DynamoDB Primary Keys
 
-- Option I: partition key only (HASH), should be uniq
+- Option I: partition key only (HASH), should be unique
     - Partition key must be unique for each item
     - Partition key must be "diverse" so data will be distributed
-- Option II: partition key + sort key, combination should be uniq
-    - Data is grouped by partition key
+- Option II: partition key + sort key, combination should be unique
+    - Data is grouped by partition keys
     - Sort key = range key
 
 ## DynamoDB Read/Write Capacity Modes
@@ -51,7 +51,7 @@
 - Option to setup auto-scaling for RCU and WCU
 - Throughput can be exceeded temporarily using "burst credits"
 - If no burst credits are available, we get a **ProvisionedThroughputException**
-- We should use exponential back-off for retries in case get the exception above
+- We should use exponential back-off for retries in case we get the exception above
 - One write capacity unit represents one write per second for an item up to 1KB in size
 - If the items are larger than 1KB, more WCU is consumed
 
@@ -97,13 +97,13 @@
 
 - Reads/writes automatically scale up/down with our workloads
 - No capacity planning is needed
-- We pay for what capacity we use, can be more expensive
+- We pay for the capacity we use, can be more expensive
 - Great for unpredictable workloads and steep sudden spikes
 
 ## DynamoDB Internal Partitions
 
 - Data is divided in partitions
-- Partition keys are hashed in order to know in which partition will the data go
+- Partition keys are hashed in order to know in which partition the data will go
 - To compute the number of partitions:
     - Capacity: `(TOTAL RCU / 3000) + (TOTAL WCU / 1000)`
     - Size: `(TOTAL SIZE / 10GB)`
@@ -126,7 +126,7 @@
 
 ### Writing Data
 
-- **PutItem** - write data to DynamoDB (create data or full replace data)
+- **PutItem** - write data to DynamoDB (create data or fully replace data)
     - Consumes WCU
 - **UpdateIem** - update data in DynamoDB (partial update of attributes)
     - Possibility to use Atomic Counters and increase them
@@ -152,7 +152,7 @@
     - Up to 400KB or data per item
 - Batching allows to save latency by reducing the number of API calls
 - Operations are done in parallel by DynamoDB
-- It is possible for a batch to fail, we can retry just the failed items
+- It is possible for a batch to fail, we can retry only the failed items
 
 ### Reading Data
 
@@ -172,15 +172,15 @@
     - PartitionKey value (*must be equals ("=") operator*)
     - SortKey value (operators: =, <, <= >, >=, Between, Begin) - optional
     - FilterExpression to further filter the data (this will happen on the client side)
-    - Returns up to 1MB of data or number of items specified by the **Limit**
+    - Returns upto 1MB of data or number of items specified by the **Limit**
     - Able to do pagination
     - We can query a table, secondary index or global secondary index
     - Efficient way to query DynamoDB!
 
 - **Scan**
-    - Scans the entire table and then filter data
-    - Returns up to 1MB ot data - we can use pagination to keep reading
-    - Consumes lot of RCU
+    - Scans the entire table and then filters data
+    - Returns up to 1 MB of data - we can use pagination to keep reading
+    - Consumes a lot of RCU
     - Limit impact using **Limit** /  reduce the size of the result in order to reduce costs
     - For faster performance we can use parallel scan
         - Way more RCU!
@@ -193,8 +193,8 @@
 
 - Alternate range key for the table, *local to the hash key*
 - Up to 5 LSI/table
-- The sort key consist of exactly one scalar attribute
-- The attribute can be String, Number, Binary
+- The sort key consists of exactly one scalar attribute
+- The attribute can be a String, Number, Binary
 - *LSI must be defined at table creation time!*
 
 ### Global Secondary Index (GSI)
@@ -205,7 +205,7 @@
 - We can project attributes on the new "table"
     - The partition key and the sort key of the original table are always projected (KEYS_ONLY)
     - We can specify extra attributes to be projected (INCLUDE)
-    - We can use all attributes from main table (ALL)
+    - We can use all attributes from the main table (ALL)
 - We must define a RCU/WCU for the index
 - *GSI can be created and modified after origin table creation!*
 
@@ -213,7 +213,7 @@
 
 - DynamoDB indexes can cause throttling
     - GSI: **If writes are throttled in case of a GSI, the main table is throttled as well!** This can happen even if the WCU on the main table is just fine
-    - LSI: uses the same WCU and RCU on the main table, can not throttle the main table
+    - LSI: uses the same WCU and RCU on the main table, cannot throttle the main table
 
 ## DynamoDB Concurrency Model
 
@@ -229,7 +229,7 @@
 - DAX addresses 3 core scenarios:
     - DAX reduces response time of eventual consistency reads
     - DAX reduces operational and application complexity by providing a managed service for caching
-    - For read-heavy or bursty workloads, DAX provides increased throughput and potential cost savings by reducing the needs for overprovision read capacity units
+    - For read-heavy or bursty workloads, DAX provides increased throughput and potential cost savings by reducing the needs for over-provisioned read capacity units
 - By default: 5 min TTL for every item in the cache
 - Multi AZ (3 nodes minimum recommended)
 - Security (encryption at rest with KMS, IAM, CloudTrail)
@@ -243,13 +243,13 @@
     - Create derivate tables/view
     - Insert data in ElasticSearch
     - etc.
-- There are offers 2 kinds of stream processing for DynamoDB:
+- There are 2 kinds of stream processing on offer for DynamoDB:
     - DynamoDB Streams:
-        - 24 hours retention
+        - 24-hour retention
         - Limited number of consumers
         - Can be processed with Lambda Triggers of DynamoDB Stream Kinesis Adapter
     - Kinesis Data Streams (newer feature):
-        - 1 year retention
+        - 1-year retention
         - We can have a higher number of consumers compared to DynamoDB Streams
         - It can be processed by Lambda, Kinesis Data Analytics, Firehose, AWS Glue Streaming ETL, etc.
 - We can choose what type of information ends up in stream:
@@ -259,20 +259,20 @@
     - `NEW_AND_OLD_IMAGES` - the entire item is pushed to the stream
 - DynamoDB Streams with Lambda functions:
     - We need to define an event source mapping to read from the stream
-    - We need to ensure the Lambda has the appropriate methods
-    - The Lambda is invoked synchronously
+    - We need to ensure that Lambda has the appropriate methods
+    - That Lambda is invoked synchronously
 
 ## DynamoDB TTL (Time to Live)
 
 - TTL = item is automatically deleted after an expiry date/time
 - TTL is provided at no extra cost / no additional WCU/RCU used
-- TTL is background task operated by DynamoDB
+- TTL is a background task operated by DynamoDB
 - Helps reduce storage and manage the size of the table over time
 - Helps adhere to regulatory norms
-- TTL is enabled per row (we define a TTL columns and add a date there)
+- TTL is enabled per row (we define a TTL column and add data to it)
     - Can be named however we want
     - Should be a number (we should use time to epoch conversion for deletion timestamp)
-- DynamoDB deletes expired items within 48 hours (it wont happen right after the item expired)
+- DynamoDB deletes expired items within 48 hours (it wouldn't happen right after the item expires)
 - Deleted items are deleted from the indexes as well (GSI/LSI)
 - Deleted items could be recovered if DynamoDB Streams are enabled
 
@@ -320,8 +320,8 @@
     - ElastiCache is in-memory, DynamoDB is serverless (automatic scaling)
     - Both are key/value store
 - Same functionality can also be achieved with EFS disk storage, differences:
-    - EFS must be attached to an EC2 instance, DynamoDB can be accessed via REST calls
-    - EFS can not be used with Lambda
+    - EFS must be attached to an EC2 instance, DynamoDB can be accessed via REST API calls
+    - EFS cannot be used with Lambda
 - ... EBS & Instance Store disk storage:
     - EBS & Instance store can only be used as local caching, they are not shared
 - ... S3:
@@ -335,11 +335,11 @@
 ## DynamoDB Write Types:
 
 - Concurrent writes:
-    - Two users try to update the same record in the same time
+    - Two users trying to update the same record at the same time
     - The last update wins
 - Conditional writes
     - A write can only happen if a specific condition is met
-    - First write will succeed, second write will fail because the condition wont be met
+    - First write will succeed, second write will fail because the condition wouldn't be met
     - Important: **data is not overridden**
 - Atomic writes:
     - INCREASE BY or DECREASE BY writes
@@ -362,14 +362,14 @@
     - Option 1: Scan + Delete => very slow, consumes RCU and WCU
     - Option 2: Drop table => fast, cheap, efficient
 - Copy table:
-    - Option 1: Use AWS DataPipeline (use EMR): takes the table, puts it into S3, puts it back into DynamoDB table (outdated)
+    - Option 1: Use AWS DataPipeline (use EMR): takes the table, puts it into a S3 bucket, puts it back into a DynamoDB table (outdated)
     - Option 2: create a back-up, restore it into a new table
     - Option 3: Scan + Write
 
 ## DynamoDB Global Tables
 
 - Enable cross-region replication of a DynamoDB table (has to be done manually on an already existing table)
-- Require DynamoDB Streams to be enabled in order to work
+- Require DynamoDB Streams to be enabled in order for it to work
 - Multi-region replication is **Active-Active** => applications can READ and WRITE in any region to the table
 - Data replication is eventually consistent
 - Transactional operations provide atomicity, consistency, isolation, and durability (ACID) guarantees only within the region where the write is made originally
@@ -381,7 +381,7 @@
     - We can use the DynamoDB on-demand backup capability to create full backups of our tables for long-term retention and archival for regulatory compliance needs
     - The on-demand backup and restore process scales without degrading the performance or availability of the applications
     - We can create backups that are consistent within seconds across thousands of partitions without worrying about schedules or long-running backup processes
-    - Can be configured an managed in AWS Backup (enables cross-region copy)
+    - Can be configured and managed in AWS Backup (enables cross-region copy)
 - **Continuous backups with Point-in-Time Recovery (PITR)**:
     - Point-in-time recovery helps protect our DynamoDB tables from accidental write or delete operations
     - Has to be enabled by AWS console, CLI, or with DynamoDB API. Provides continuous backups until we explicitly turn it off
@@ -391,9 +391,9 @@
 
 ## DynamoDB Integration with S3
 
-- We can export a table to S3. To do this we must enable PITR:
+- We can export a table to a S3 bucket. To do this we must enable PITR:
     - Works for any point in time in the last 35 days
-    - When doing an export, the read capacity of the table wont be affected
+    - When doing an export, the read capacity of the table will not be affected
     - Use cases:
         - Data analytics with Athena
         - Retain snapshot for auditing
@@ -414,4 +414,3 @@
     - Encryption in transit using SSL/TLS
 - Integration with Amazon DMS
 - Local DynamoDB for development
-
