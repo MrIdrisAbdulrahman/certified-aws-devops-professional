@@ -1,7 +1,7 @@
-# DMS - Database Migration Service
+# AWS DMS - Database Migration Service
 
 - Allows us to quickly and securely migrate databases to AWS
-- It is resilient and self healing
+- It is resilient and self-healing
 - The source database remains available during migration
 - Supports:
     - Homogeneous migrations: example Oracle to Oracle
@@ -12,13 +12,13 @@
 ## DMS Sources and Targets
 
 - Sources:
-    - On-premises and EC2 instance database: Oracle, MS SQL Server, MySQL, MariaDB, PostgreSQL, MongoDB, SAP, DB2
+    - On-premise and EC2 instance database: Oracle, MS SQL Server, MySQL, MariaDB, PostgreSQL, MongoDB, SAP, DB2
     - Azure: Azure SQL Database
     - Amazon RDS: all including Aurora
     - Amazon S3
     - DocumentDB
 - Targets:
-    - On-premises or databases running on EC2 instance: Oracle, MS SQL Server, MySQL, MariaDB, PostgreSQL, SAP
+    - On-premises or databases running on EC2 instances: Oracle, MS SQL Server, MySQL, MariaDB, PostgreSQL, SAP
     - Any DB in Amazon RDS
     - Redshift, DynamoDB, S3
     - OpenSearch Service
