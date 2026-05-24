@@ -1,7 +1,7 @@
 # Amazon EventBridge (formerly known as CloudWatch Events)
 
 - With EventBridge we can:
-    - Schedule jobs: Cron Jobs (example trigger a Lambda each hour)
+    - Schedule jobs: Cron Jobs (eg. trigger a Lambda function each hour)
     - React to Event Patterns: we create event rules to react to a service doing something
 - Source + Rule => Target should change in some ways
 
@@ -9,13 +9,13 @@
 
 - Sources that can trigger events:
     - EC2 instance state changes
-    - CodeBuild events (ex. build failed)
+    - CodeBuild events (eg. build failed)
     - S3 Events
     - Trusted Advisor
     - CloudTrail (any API call)
     - Scheduled Events/Cron
 - Filters:
-    - Filter events based on rules
+    - We can filter events based on rules
     - Filters are optional
 - Destinations (actions to take in case of an event):
     - Trigger Lambda function
@@ -33,8 +33,8 @@
 - Default Event Bus: Amazon EventBridge
 - Partner Event Bus: partners can send events to a Partner Event Bus
 - Custom Event Bus: our own applications can send events to this bus
-- Event buses can be access by other AWS accounts using Resource-based Policies
-- We can archive events (all/filtered) sent to an event bus for indefinite or a set period
+- Event buses can be accessed by other AWS accounts using Resource-based Policies
+- We can archive events (all/filtered) sent to an event bus for an indefinite or a set period of time
 - We can replay archived events
 
 ## Schema Registry
