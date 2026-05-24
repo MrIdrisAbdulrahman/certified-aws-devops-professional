@@ -80,7 +80,7 @@
 
 - AWS documentation: [https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-transform-target-input.html](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-transform-target-input.html)
 
-## EvenBridge Integration with CloudTrail API
+## EventBridge Integration with CloudTrail API
 
 - All events that are delivered via CloudTrail have `AWS API Call via CloudTrail` as the value for detail-type
 - To create a rule that triggers on an action by an AWS service that does not emit events, we can base the rule on API calls made by that service
