@@ -36,10 +36,10 @@
 
 ## Multi Region Services
 
-- DynamoDB Global Tables: multi wau replication, enabled by Streams
-- AWS Config Aggregators: multi region and multi account aggregated view in one account
+- DynamoDB Global Tables: multi-way replication, enabled by Streams
+- AWS Config Aggregators: multi-region and multi-account aggregated view in one account
 - RDS Cross Region Read Replicas: used for Read and disaster recovery
-- Aurora Global Database: one region is master, other is for read and disaster recovery
+- Aurora Global Database: one region is master, the other is for read and disaster recovery purposes
 - EBS volumes snapshots, AMI, RDS snapshots can be copied to other regions
 - VPC peering to allow private traffic between regions
 - Route 53 uses a global network of DNS servers
@@ -68,4 +68,4 @@
 ## Multi Region CodePipeline
 
 - Reference: [https://aws.amazon.com/blogs/devops/using-aws-codepipeline-to-perform-multi-region-deployments/](https://aws.amazon.com/blogs/devops/using-aws-codepipeline-to-perform-multi-region-deployments/)
-- In order to do multi region deployments, the artifact store must be copied across regions 
+- In order to do multi-region deployments, the artifact store must be copied across regions 
