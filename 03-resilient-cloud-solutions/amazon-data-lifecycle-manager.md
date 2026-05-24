@@ -10,12 +10,12 @@
 
 ## Policies
 
-- With Amazon Data Lifecycle Manager, we create policies to define your backup creation and retention requirements
+- With Amazon Data Lifecycle Manager, we create policies to define backup creation and retention requirements
 - These policies typically specify the following:
     - Policy type — Defines the type of backup resources that the policy manages (snapshots or EBS-backed AMIs)
     - Target resources — Defines the type of resources that are targeted by the policy (instances or EBS volumes)
     - Creation frequency — Defines how often the policy runs and creates snapshots or AMIs
     - Retention threshold — Defines how long the policy retains snapshots or AMIs after creation
     - Additional actions — Defines additional actions that the policy should perform, such as cross-Region copying, archiving, or resource tagging
-- Default policies: back up all volumes and instances in a Region that do not have recent backups
+- Default policies: backup all volumes and instances in a Region that do not have recent backups
 - Custom policies: target specific resources based on their assigned tags and support advanced features, such as fast snapshot restore, snapshot archiving, cross-account copying, and pre and post scripts
