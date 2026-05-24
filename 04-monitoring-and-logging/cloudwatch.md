@@ -2,18 +2,18 @@
 
 ## CloudWatch Metrics
 
-- CloudWatch provides metrics for every services in AWS
+- CloudWatch provides metrics for every service in AWS
 - A metric is a variable to monitor (CPUUtilization, NetworkIn, etc.)
 - Metrics belong to **namespaces**
 - A **dimension** is an attribute of a metric (instance id, environment, etc)
-- We can have up to 30 dimensions per metric
+- We can have up to **30 dimensions per metric**
 - Metrics have a **timestamp**
-- We can create a CloudWatch Dashboards with metrics
+- We can create CloudWatch Dashboards with metrics
 
 ### CloudWatch Metric Streams
 
-- Used to continually stream CloudWatch metrics to a destination of our choice with near-real-time delivery and low latency
-- Destination can be the following:
+- Used to continually stream CloudWatch metrics to choice destinations with near-real-time delivery and low latency
+- Destinations can be the following:
     - Amazon Kinesis Data Firehose and then its destinations
     - Directly into 3rd party service providers such as Datadog, Dynatrace, New Relic, Splunk, Sumo Logic, etc.
 
@@ -21,30 +21,30 @@
 
 - EC2 instance metrics are reporting every 5 minutes
 - With detailed monitoring we may get samplings every 1 minute
-- Detailed monitoring also can improve the scalability of our application: use detailed monitoring if we want to more prompt scale of our ASG
-- Maximum retention period for metrics is 15 months. Data points with a period less than 60 second are available for 3 hours, data points with period of 60 seconds are available for 15 days, 5 minute data points for 63 days and 1 hour data points for 15 months
+- Detailed monitoring also can improve the scalability of our application: detailed monitoring is used if we want to prompt more the scale of our ASG
+- **Maximum retention period for metrics is 15 months. Datapoints with a period less than 60 seconds are available for 3 hours, datapoints with a period of 60 seconds are available for 15 days, 5 minute datapoints for 63 days and 1 hour datapoints for 15 months**
 
 ### CloudWatch Builtin Metrics
 
 - EC2:
     - CPU Utilization
     - Disk Reads, Read Operations and Writes: only available for instances with instance store
-    - Network In, Out, Packets In, Packets Out
+    - Network In, Network Out, Packets In, Packets Out
     - Status Check and Failed Status Check
     - CPU Credit Usage and Balance: for T2, T3 burstable instances
-    - We don't get built in metrics for RAM and running processes
+    - We don't get built-in metrics for RAM and running processes
 - EBS:
     - Read Bandwidth, Write BandWith
     - Read Throughput, Write Throughput
     - Average Queue Length: how many operations are queued for the EBS volume
-    - Time Spent Idle
+    - Idle Time Spent
     - Average Read/Write Size
-    - Burs Balance
-    - We don't get built in metrics for disk space used
+    - Burst Balance
+    - We don't get built-in metrics for diskspace usage
 - ASG:
     - Minimum, Maximum Group Size
     - Desired Capacity
-    - In Service Instances
+    - In-Service Instances
     - Pending/Standby Instances
     - Terminating Instances
     - Total Instances
