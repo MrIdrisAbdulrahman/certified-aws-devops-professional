@@ -19,7 +19,7 @@
 
 - EBS is tied to a single AZ
 - How can we make EBS multi AZ?
-    - We crate an ASG with 1 min/max/desired capacity
+    - We create an ASG with 1 min/max/desired capacity
     - We create a lifecycle hook for `Terminate`: make a snapshot of the EBS volume
     - We create a lifecycle hook fot `Start`: copy the snapshot, create an EBS, attach it to the instance
 - Note: for PIOPS volumes (IO1), to get max performance after snapshot,  read the entire volume once (pre warming of IO blocks)
