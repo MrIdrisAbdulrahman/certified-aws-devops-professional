@@ -6,4 +6,4 @@
 - Collects metadata from our AWS resources and services
 - Has auto-instrumented agents to collect traces without changing our code
 - Traces/metrics can be sent to multiple AWS services and partner solutions
-- We can migrate from X-Ray to AWS Distro for OpenTelemetry if we want to standardize with open-source APIs from Telemetry or send traces tro multiple destinations simultaneously
+- We can migrate from X-Ray to AWS Distro for OpenTelemetry if we want to standardize with open-source APIs from Telemetry or send traces to multiple destinations simultaneously
