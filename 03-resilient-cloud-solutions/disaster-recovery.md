@@ -9,21 +9,21 @@
 
 ## RPO and RTO
 
-- RPO - Recovery Point Objective: How often we create backups. Time between the RPO and the disaster is the data loss
-- RTO - Recovery Time Objective: The point in time when the recovery finishes. The time between the disaster and the RTO is downtime
+- RPO - Recovery Point Objective: How often we create backups. Time between the RPO and a disaster is the data loss period
+- RTO - Recovery Time Objective: The point-in-time when the recovery finishes. The time between a disaster and the RTO is referred to as downtime
 
 ## Disaster Recovery Strategies
 
 - Backup and Restore: high RPO, cheap, easy to manage and accomplish
 - Pilot Light:
-    - A small version of the app is always running in the cloud
+    - A small version of the app is always running on the cloud
     - Useful for critical core (pilot light)
     - Similar to backup and restore strategy
-    - Faster than backup and restore as critical system are already running
+    - Faster than backup and restore as critical systems are already running
 - Warm Standby
     - Full system is up and running but at a minimal size
-    - Upon disaster we can scale to production load
-- Hot Site / Multi Site Approach
+    - Upon a disaster we can scale to production load
+- Hot-Site / Multi-Site Approach
     - Very low RTO - very expensive
     - Full production scale is running on the cloud
 - All AWS Multi Region
@@ -31,11 +31,11 @@
 ## Disaster Recovery Tips
 
 - Backups:
-    - EBS Snapshots, RDS, automated backups, snapshots, etc.
-    - Regular pushes to S3/S3 IA/Glacier, Lifecycle Policy, Cross region replication
+    - EBS (Elastic Block Store) Snapshots, RDS, automated backups, snapshots, etc.
+    - Regular pushes to S3/S3 IA/Glacier, Lifecycle Policy, Cross Region Replication
     - From on-premise: Snowball or Storage Gateway
 - High Availability:
-    - Use Route53 to migrate DNS over from region to region
+    - Use Route53 to migrate DNS from region to region
     - RDS Multi-AZ, ElastiCache Multi-AZ, EFS, S3
     - Site to site VPN as recovery from Direct Connect
 - Replication:
@@ -44,7 +44,7 @@
     - Storage Gateway
 - Automation:
     - CloudFormation/Elastic Beanstalk to recreate a whole new environment
-    - Recover/Reboot EC2 instances with CloudWatch if alarm is in fail state (ALARM)
+    - Recover/Reboot EC2 instances with CloudWatch if alarm is in a fail state (ALARM)
     - AWS Lambda for customized automation
 - Chaos
     - Netflix has a "simian-army" randomly terminating EC2 instances
@@ -64,23 +64,23 @@
 - AWS Server Migration Service (SMS):
     - Incremental replication of on-premise live servers to AWS
 
-## Multi Region Disaster Recovery Checklist
+## Multi-Region Disaster Recovery Checklist
 
 - Is my AMI copied across multiple regions? Is it stored in the parameter store?
 - Is my CloudFormation StackSet working and tested to work in another region?
-- What is my RPO and RTO?
+- What are my RPO and RTO?
 - Are Route 53 Health Checks working correctly? Tied to a CW Alarm?
 - How can I automate with CloudWatch Events to Trigger some Lambda functions and perform an RDS read replica promotion?
-- is my data backed up? What is the RTO and RPO of my data?
+- Is my data backed-up? What is the RTO and RPO of my data?
 
-## Backups and Multi Region DR
+## Backups and Multi-Region DR
 
 - EFS Backup:
     - AWS Backup with EFS: it is a managed service, we can set the frequency, backup time, retain time, lifecycle policy
     - EFS to EFS backup in the same region
 - Route 53 Backup:
     - We can use `ListResourceRecordSets` API for exports
-    - We can write our own script for import into Route 53 or other DNS provider
+    - We can write our own script for import into Route 53 or other DNS providers
 - Elastic Beanstalk Backup:
     - We can save configuration files using the eb cli or AWS console
 
@@ -91,12 +91,12 @@
     - We can migrate existing applications into EC2
     - We can create a DR repository strategy for on-premise VMs
     - We can export back the VMs from EC2 to on-premise
-- AWS Application Discovery Service:
+- AWS Application Discovery Service (ADS):
     - Gather information about on-premise servers to plan a migration
     - Server utilization and dependency mappings
-    - We can track migration with AWS Migration Hub
+    - We can track migration with AWS Migration Hub (for migrating applications)
 - AWS Database Migration Service (DMS):
     - Replicate on-premise databases into AWS and vice-versa
-    - Works with various databases technologies such as Oracle, MySQL, DynamoDB, etc.
+    - Works with various database technologies such as Oracle, MySQL, DynamoDB, etc.
 - AWS Server Migration Service (SMS):
     - Incremental replication of on-premise live servers to AWS
