@@ -30,7 +30,7 @@
     - query-string
 - Target Group Weighting:
     - We can specify a weight for each Target Group on a single rule
-    - Allows us to control the distribution of the traffic to our application
+    - Allows us to control the distribution of traffic to our application
 
 ## ELB DualStack Networking
 
