@@ -1,7 +1,7 @@
 # Amazon Athena
 
-- It is serverless query service that can be used to analyze data stored in an S3 bucket
-- Uses standard SQL language to query file (built on Presto)
+- Is a serverless query service that can be used to analyze data stored in an S3 bucket
+- Uses standard SQL language to query files (built on Presto)
 - Supports CSV, JSON, ORC, Avro and Parquet
 - Pricing: $5 per TB of data scanned
 - Commonly used with Amazon Quicksight for reporting/dashboards
@@ -16,6 +16,6 @@
 
 ## Federated Queries
 
-- Allows us to run SQL queries across data stored in relational, non-relational, object and custom data sources (AWS or on-premises)
+- Allow us to run SQL queries across data stored in relational, non-relational, object and custom data sources (AWS or on-premises)
 - This can be accomplished with Data Source Connectors that run AWS Lambda to execute Federated Queries
 - Results will be stored in S3 buckets
