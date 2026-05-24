@@ -5,7 +5,8 @@
 - If a consumer fails to process a message within the `VisibilityTimeout`, the message will be placed back in the queue
 - We can set a threshold of how many times a message can be placed back in the queue (`MaximumReceives` threshold)
 - After this threshold is exceeded, the messages are placed back in the DLQ
-- DLQ of a FIFO queue must be a FIFO queue. DLQ of a Standard queue must also be a Standard Queue
+- DLQ of a FIFO queue must be a FIFO queue.
+- DLQ of a Standard queue must also be a Standard Queue
 - **Redrive to Source**:
     - It is a feature which helps consume messages in the DLQ to understand what is wrong with them
     - When our code is fixed, we can redrive the messages from the DLQ back into the source queue (or any other queue) in batches without writing custom code
