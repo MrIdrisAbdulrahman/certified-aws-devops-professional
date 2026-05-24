@@ -92,8 +92,8 @@
 
 - Used to continuously analyze metrics to determine normal baselines and surface anomalies using machine learning algorithms
 - It creates a model based on the metric's past data
-- Shows us which values in the graph are out of the normal range
-- Allows us to create alarms based on expect values (instead of using a static threshold)
+- Shows us which values in the graph are out of normal range
+- Allows us to create alarms based on expected values (instead of using a static threshold)
 - Provides the ability to exclude time periods or events from being trained
 
 ## CloudWatch Logs
@@ -107,7 +107,7 @@
     - VPC FLow Logs
     - API Gateway
     - CloudTrail based on filter
-    - Route53: log DNS queries
+    - Route53: DNS query logs
 - CloudWatch logs can be exported to:
     - Amazon S3 (batch exporting for archival)
     - Kinesis Data Streams
@@ -126,21 +126,21 @@
 
 - Can be used to search and analyze log data stored in CloudWatch
 - Example: find specific IP inside logs, count occurrences of `ERROR` messages
-- Provides a purpose-build query language:
+- Provides a purpose-built query language:
     - Automatically discovers fields from AWS services and JSON log events
     - We can fetch desired event fields, filter based on conditions, calculate aggregate statistics, sort events, limit number of events
 - We can query multiple Log Groups at a time even if they are in different AWS accounts
-- CloudWatch Logs Insights is a query engine, can do queries on historical data
+- CloudWatch Logs Insights is a query engine, can perform queries on historical data
 
 ### Exporting Logs
 
 - S3 Export:
     - It is a batch export
-    - Exports are started as task which can take up to 12 hours to finish
+    - Exports are started as tasks which can take up to 12 hours to finish
     - The API call for starting a task is `CreateExportTask`
 - CloudWatch Logs Subscriptions:
     - Subscriptions are used to access real-time feed of log events from CloudWatch and have it delivered to other services such as Kineses Streams, Kinesis Firehose or AWS Lambda for custom processing
-    - **Subscription Filter**: filter which logs events to deliver to the destination
+    - **Subscription Filter**: filter which log events to deliver to the destination
     - With subscription filters we can aggregate logs from different accounts and regions into a single account. To accomplish this we must use a **Cross-Account Subscription**
 
 ### Live Tail
@@ -155,14 +155,16 @@
 - We can create CloudWatch metrics from logs by creating metric filters
 - A metric filter is a filter pattern which will be applied to log messages
 - We can create alarms out of metric filters
-- Metric Filters do not retroactively filter data. Filters only publish metric data points for events that happen after the filter was created
+- Metric Filters do not retroactively filter data. Filters only publish metric datapoints for events that happen after the filter was created
 
 ## CloudWatch Unified Agent
 
-- CloudWatch agent variants: CloudWatch Logs Agent; CloudWatch Unified Agent (newer, recommended)
-- Newer logging agent, can be used for sending metrics and logs as well to CloudWatch from EC2 instances and on-premises
+- CloudWatch agent variants:
+     CloudWatch Logs Agent;
+     CloudWatch Unified Agent (newer, recommended)
+- Newer logging agent, can be used for sending metrics and logs from EC2 instances to CloudWatch as well as those from on-premise servers
 - We can store configurations for the agent in SSM Parameter store to be reusable across multiple instances
-- The unified agent can send `statsd` to send information to CloudWatch
+- The unified agent can trigger `statsd` to send information to CloudWatch
 - With the agent we can send memory and internal CPU metrics to CloudWatch
 - Metrics that can be collected from a server/EC2 instance:
     - CPU metrics (active, guest, idle, system, user, steal)
@@ -172,13 +174,13 @@
     - Processes (total, dead, blocked, idle, running, sleep)
     - Swap Space (free, used, used percentage)
 
-## All kind of Logs
+## All kinds of Logs
 
 - Application Logs:
     - Logs that are produced by application code
-    - Contains custom log messages, stack traces, etc.
+    - Contain custom log messages, stack traces, etc.
     - Written to a local file on the filesystem
-    - Usually stream to CloudWatch Logs using the CloudWatch agent on EC2
+    - Usually streamed to CloudWatch Logs using the CloudWatch agent on EC2 instances
     - If using Lambda, direct integration with CloudWatch Logs is available
     - If using ECS or Fargate, direct integration with CloudWatch Logs is available and can be enabled
     - If using Elastic Beanstalk, direct integration with CloudWatch can be enabled by setting the necessary IAM roles
@@ -195,27 +197,27 @@
 - Load Balancer access logs: can be sent directly to S3
 - CloudTrail Logs: can be sent either to S3 or CloudWatch Logs
 - VPC Flow Logs: can be sent either to S3 or CloudWatch Logs
-- Route53 Access Logs: can be only sent to CloudWatch Logs (can be exported with a subscription)
+- Route53 Access Logs: **can be only sent to CloudWatch Logs (can be exported with a subscription)**
 - S3 Access Logs: can be sent directly to S3
 - CloudFront Access Logs: can be sent directly to S3
 
 ## CloudWatch Alarms
 
 - Alarms are used to trigger notifications for any metric
-- Alarms can go to Auto Scaling, EC2 actions, SNS notifications
-- Different ways of computing alarms: sampling, percentage max, min, etc.
+- Alarms can go to Auto-Scaling, EC2 actions, SNS notifications
+- Different ways of computing alarms: sampling, percentage max and min, etc.
 - Alarm states:
     - `OK`
     - `INSUFFICIENT_DATA`
     - `ALARM`
 - Period:
     - Length of time in seconds to evaluate the metric
-    - High resolution custom metrics: we can choose between 10, 30 second or multiples of 60 secods
+    - High resolution custom metrics: we can choose between 10, 30 seconds or multiples of 60 seconds
 - Targets:
     - Actions on EC2 instances: Stop, terminate, reboot or recover EC2 instances
-    - Trigger auto scaling actions
+    - Trigger auto-scaling actions
     - Send notifications to SNS
-- Alarms can be created based in CloudWatch Logs metrics filter
+- Alarms can be created based on CloudWatch Logs metrics filter
 - CloudWatch does not test or validate the actions that are assigned
 - In order to test an alarm, we can use the following command:
 
@@ -227,7 +229,7 @@
 
 - CloudWatch Alarms are based on a single metric
 - With Composite Alarms we can create alarms by monitoring the state of other multiple alarms
-- `ADN` or `OR` conditions are supported
+- `AND` `OR` or `NOT` conditions are supported
 - Helpful to reduce "alarm noise" by creating complex composite alarms
 
 ### EC2 Instance Recovery
@@ -241,16 +243,16 @@
 ### Billing Alarms
 
 - We can create an alarm based on spending
-- We can send notifications to SNS topics if the billing alarms is triggered
-- We can create billing alarms for specific service
+- We can send notifications to SNS topics if billing alarms are triggered
+- We can create billing alarms for specific service(s)
 
 ## CloudWatch Dashboard
 
 - Great way to setup dashboards for quick access to key metrics
 - Dashboards are global
 - Dashboards can include graphs from different regions
-- We can change the time zone and time range of the dashboards
-- We can setup automatic refresh (10s, 1m, 2m, 5m, 15m)
+- We can change the timezone and time-range of the dashboards
+- **We can setup automatic refresh (10s, 1m, 2m, 5m, 15m)**
 - Pricing:
     - 3 dashboards (up to 50 metrics) for free
     - $3/dashboard/month
@@ -258,7 +260,7 @@
 ## CloudWatch Synthetics Canary
 
 - Synthetics Canary are configurable scripts that will monitor APIs and URLs
-- These scripts meant to reproduce what a customer would do in order to find issues before the app is deployed to production
+- These scripts are meant to reproduce what a customer would do in order to find issues before the app is deployed to production
 - They can be also used to check the availability and latency of our endpoints
 - They can store load time data and screenshots of the UI
 - They have integration with CloudWatch Alarms
@@ -266,7 +268,7 @@
 - Provides programmatic access to a headless Chrome browser
 - They can be run once or on a regular basis
 - Canary Blueprints:
-    - Heartbeat Monitor: load URL, store screenshot and an HTTP archive file
+    - Heartbeat Monitor: load URL, store screenshot and a HTTP archive file
     - API Canary: test basic read and write functions of a REST API
     - Broken Link Checker: check all links inside a page
     - Visual Monitoring: compare a screenshot taken during a canary run with a baseline screenshot
