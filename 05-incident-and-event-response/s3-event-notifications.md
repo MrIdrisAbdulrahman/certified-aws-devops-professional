@@ -28,7 +28,7 @@
 
 - S3 uses checksums to validate the integrity of uploaded objects
 - It is using the MD5 checksum algorithm
-- To make sure AWS accepts/reject an uploaded file, we can pass in the `Content-MD5` header with the calculated MD5 hash
+- To make sure AWS accepts/rejects an uploaded file, we can pass in the `Content-MD5` header with the calculated MD5 hash
 - To validate an already uploaded object, we can use the ETag of the object:
     - ETag represents a version of the object, which is the MD5 hash if SS3-S3 encryption is enabled
     - We can get the ETag with `GetObjectMetadata` API call
