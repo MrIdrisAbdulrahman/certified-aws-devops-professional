@@ -60,7 +60,7 @@
 
 ## CloudFormation Integration
 
-- We can enable GuarDuty from CloudFormation template
-- If GuarDuty is already enabled, the CloudFormation Stack deployment will fail
+- We can enable GuardDuty from CloudFormation template
+- If GuardDuty is already enabled, the CloudFormation Stack deployment will fail
 - We can use Custom Resources (Lambda) to conditionally enable GuardDuty if it is not enabled yet
 - We can then deploy this across all the organization using Stack Sets
