@@ -9,7 +9,7 @@
     - AppSync
 - **WAF is not used for DDoS protection! Use Shield for that.**
 - For WAF we have to define Web ACLs (Access Control Lists) - rules:
-    - Rules can include IP address, HTTP headers, HTTP Body or URI strings
+    - Rules can include IP address, HTTP headers, HTTP Body or Uniform Resource Identifier (URI) strings
     - Rules that protect from common attacks: SQL injection and Cross-Site Scripting (XSS)
     - Rules based on size constraints, Geo match
     - Rate based rules
