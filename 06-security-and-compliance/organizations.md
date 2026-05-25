@@ -1,12 +1,12 @@
 # AWS Organizations
 
-- It is a global service allowing to manage multiple AWS accounts from a organization
+- It is a global service which allows for the management of multiple AWS accounts from an organization
 - The main account is the master account, this can not be changed
 - Managed accounts are called member accounts
 - Member accounts can be part of a single organization, they can be migrated to other organizations
 - AWS Organizations provides consolidated billing across all accounts - single payment method
-- Pricing benefits from aggregated usage
-- API is available to automate AWS account creation
+- Aggregated usage has pricing benefits
+- An API is available to automate AWS account creation
 
 ## `OrganizationAccountAccessRole`
 
@@ -14,16 +14,16 @@
 - Grants full administrator permissions in the member account to the management account
 - Can be used to perform admin tasks from the management account
 - Can be assumed by IAM users in the management account
-- It is automatically added all new member accounts created with AWS Organizations
+- All new member accounts created with AWS Organizations are automatically added to it
 - Must be created manually if we invite an existing account
 
-## Multi Account Strategies
+## Multi-Account Strategies
 
-- Create accounts per department, per cost center, per dev/test/prod, based on regulatory restrictions (using SCP), for better isolation, to have separate per-account service limits, isolated accounts fro logging, etc.
-- Multi accounts vs one account using multi VPC
+- Create accounts per department, per cost center, per dev/test/prod, based on regulatory restrictions (using Service Control Policy {SCP}), for better isolation, to have separate per-account service limits, isolated accounts for logging, etc.
+- Multi-accounts vs single account using multi VPC
 - We can have tagging standards for billing purposes
 - We can have CloudTrail on all accounts, aggregate logs to a central S3 account
-- We can establish cross account roles for admin purposes
+- We can establish cross-account roles for admin purposes
 
 ## Organization Units (OU)
 
@@ -33,12 +33,12 @@
 
 - Consolidated billing features:
     - Consolidated Billing across all accounts - single payment method
-    - Pricing benefits from aggregated usage (volume discount fec EC2, S3, etc.)
+    - Pricing benefits from aggregated usage (volume discount for EC2, S3, etc.)
 - All Features (Default):
     - Includes consolidated billing features and SCP
     - Invited accounts must approve enabling all features
-    - Provides the ability to apply an SCP to prevent member accounts from leaving the org
-    - Once enabled, we cannot go back to Consolidated Billing Features only
+    - Provides the ability to apply an SCP to prevent member accounts from leaving the organization
+    - Once enabled, we cannot go back to Consolidated Billing Features
 
 ## Reserved Instances
 
@@ -56,7 +56,7 @@
 - SCP must have an explicit Allow (does not allow anything by default)
 - Use cases:
     - Restrict access to certain services
-    - Enforce PCI compliance by disable certain services
+    - Enforce PCI compliance by disabling certain services
 
 ## Moving Accounts
 
@@ -69,15 +69,15 @@
     2. Delete the old organization
     3. Repeat the process above to invite the old master account to the new organization
 
-## Multi Account with AWS
+## Multi-Account with AWS
 
-- Any cross account action requires to define IAM trust
-- IAM roles can be assumed cross account (STS - `AssumeRole`)
-- CodePipeline: cross account invocation of CodeDeploy
+- Any cross-account action requires defining an IAM trust
+- IAM roles can be assumed cross-account (STS - `AssumeRole`)
+- CodePipeline: cross-account invocation of CodeDeploy
 - AWS Config Aggregators
 - CloudWatch Events - Event Bus: we can send events across accounts
 - CloudFormation - StackSets
-- CloudWatch Logs: cross account log sharing with subscriptions
+- CloudWatch Logs: cross-account log sharing with subscriptions
 
 ## AWS Services that We Can Use with AWS Organizations
 
@@ -88,11 +88,11 @@
 - Services:
     - AWS CloudFormation Stacksets: a user in the management account or a delegated administrator account can create a stack set with service-managed permissions that deploys stack instances to accounts in our organization
     - AWS CloudTrail: a user in a management account or delegated administrator account can create an organization trail or event data store that logs all events for all accounts in the organization
-    - AWS Config: we can get an organization-wide view of our compliance status. We can also use AWS Config API operations to manage AWS Config rules and conformance packs across all AWS accounts in your organization
-    - AWS Control Tower: we can set up a landing zone, a multi-account environment for all of your AWS resources
-    - Amazon EventBridge: we can enable sharing of all Amazon EventBridge events, formerly Amazon CloudWatch Events, across all accounts in your organization
-    - AWS Firewall Manager: we can centrally configure and manage AWS WAF rules across the accounts in your organization
-    - Amazon GuardDuty: we can designate a member account to view and manage GuardDuty for all of the accounts in your organization
-    - AWS IAM Identity Center: users can sign in to the AWS access portal with their corporate credentials and access resources in their assigned management account or member accounts
-    - AWS Trusted Advisor: run Trusted Advisor checks for all of the AWS accounts in your organization
+    - AWS Config: we can get an organization-wide view of our compliance status. We can also use AWS Config API operations to manage AWS Config rules and conformance packs across all AWS accounts in our organization
+    - AWS Control Tower: we can set up a landing zone, a multi-account environment for all AWS resources
+    - Amazon EventBridge: we can enable the sharing of all Amazon EventBridge events, formerly Amazon CloudWatch Events, across all accounts in an organization
+    - AWS Firewall Manager: we can centrally configure and manage AWS WAF rules across the accounts in an organization
+    - Amazon GuardDuty: we can designate a member account to view and manage GuardDuty for all accounts in an organization
+    - AWS IAM Identity Center: users can sign-in to the AWS access portal with their corporate credentials and access resources in their assigned management account or member accounts
+    - AWS Trusted Advisor: run Trusted Advisor checks for all AWS accounts in an organization
     - etc.
