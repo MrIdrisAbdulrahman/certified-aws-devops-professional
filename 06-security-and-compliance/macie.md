@@ -14,9 +14,9 @@
 - Data source is the origin or location of a set of data:
     - AWS CloudTrail event logs and errors, including Amazon S3 object-level API activity
     - Amazon S3 objects: we can integrate Macie with our S3 buckets and/or specify S3 prefixes
-- User, in the context of Macie, a user is the AWS Identity and Access Management (IAM) identity that makes the request
+- User in the context of Macie; is the AWS Identity and Access Management (IAM) identity that makes the request
 - There are certain file formats that Macie does not support, such as wav files
-- Once Macie begins monitoring your data, it uses several automatic content classification methods to identify and prioritize your sensitive and critical data and to accurately assign business value to our data
+- Once Macie begins monitoring your data, it uses several automatic content classification methods to identify and prioritize your sensitive and critical data and to accurately assign business value to data
 - Each classification has a designated risk level between 1 and 10, with 10 being the highest risk and 1 being the lowest
 - Classification methods:
     - Content Type Classification
