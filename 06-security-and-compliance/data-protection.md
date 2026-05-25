@@ -8,7 +8,7 @@
     - Optional SSL/TLS encryption between ALB and EC2 instances
 - CloudFront with SSL
 - All AWS services expose HTTP endpoints
-- It is possible to send data through HTTP to S3 (we probably should not do this!)
+- It is possible to send data using HTTP to S3 (**we probably should not do this!**)
 
 ## At Rest Encryption
 
@@ -16,12 +16,12 @@
     - SSE-S3
     - SSE-KMS
     - SSE-C
-    - Client side encryption
+    - Client-side encryption
     - Possibility to enable default encryption
     - Possibility to enforce encryption through S3 bucket policies (`x-amz-server-side-encryption`)
-    - Data in Glacier is encryption by default
+    - Data in Glacier is encrypted by default
 - EBS, EFS, RDS, ElastiCache, DynamoDB encryption:
-    - Usually uses either encryption key of our own
+    - Usually uses our own encryption keys
 - Category of data:
     - PHI: protected health information
     - PII: personally-identifying information
