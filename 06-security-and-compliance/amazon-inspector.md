@@ -32,7 +32,7 @@
 
 ## Automation
 
-- Amazon Inspector can be target of en event in EventBridge
+- Amazon Inspector can be a target of an event in EventBridge
 - Scheduled inspection: can be activated from Inspector. It will create a rule in EventBridge in order to regularly trigger inspections
-- Assessment templates can also automatically send messages to an SNS topic. This can be activated from the Inspector using a template settings
-- Notifications from Inspector can be done only using the send message to SNS topic functionality
+- Assessment templates can also automatically send messages to an SNS topic. This can be activated in Inspector using template settings
+- Notifications from Inspector can only be sent using the "send message to SNS topic" functionality
