@@ -30,6 +30,6 @@
     - Protocol
     - Stateful domain list rule groups
     - General pattern matching using regex
-- Traffic filtering: Allow, drop or alert for the traffic that matches one of the rules the we set up
+- Traffic filtering: Allow, drop or alert for the traffic that matches one of the rules we set
 - Active flow inspection: protects against network threats with intrusion-prevention capabilities (like Gateway Load Balancer, but all managed by AWS)
 - All the rule matches can be sent to Amazon S3, CloudWatch Logs or Kinesis Data Firehose
