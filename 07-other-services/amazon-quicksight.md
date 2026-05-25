@@ -5,6 +5,6 @@
 - Use cases:
     - Business analytics
     - Building visualizations
-    - Perform ad-hoc analysis
+    - Performing ad-hoc analysis
     - Get business insights using data
 - Integrates with RDS, Aurora, Athena, Redshift, S3, etc.
