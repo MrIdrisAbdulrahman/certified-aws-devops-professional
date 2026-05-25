@@ -2,7 +2,7 @@
 
 - No need to install anything - high level AWS account assessment
 - It does analyze an AWS account and provides recommendations regarding:
-    - Const optimization
+    - Cost optimization
     - Performance
     - Security
     - Fault tolerance
@@ -11,16 +11,16 @@
 - It has 2 tiers:
     - Free tier
     - Business & Enterprise Support plan:
-        - For full set of check
+        - For a full set of check
         - Programmatic access using AWS support API
 - Core checks and recommendations are enabled for all customers
     - We can enable weekly email notifications from the console
-- Full Trusted Advices: available for Business and Enterprise support plans
-    - Provides the ability to set CloudWatch alarms when limits are reached
+- Full Trusted Advice: available for both Business and Enterprise support plans
+    - Provides the capability to set CloudWatch alarms when limits are reached
 
 ## Trusted Advisor Automation
 
-- We can use EventBridge to detect and react to changes it the status of Trusted Advisor checks
+- We can use EventBridge to detect and react to changes in the status of Trusted Advisor checks
 - Examples of automation: [https://github.com/aws/Trusted-Advisor-Tools](https://github.com/aws/Trusted-Advisor-Tools)
 - Trusted Advisor has integration with CloudWatch Alarms in order to monitor service limits (for business and enterprise support plans)
 - Trusted Advisor refresh:
