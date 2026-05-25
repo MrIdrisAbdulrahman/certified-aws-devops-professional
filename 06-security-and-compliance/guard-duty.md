@@ -36,7 +36,7 @@
     - `ThreatPurpose`: primary purpose of the threat (Backdoor, CryptoCurrency, etc.)
     - `ResourceTypeAffected`: AWS resource affected
     - `ThreatFamilyName`: describes the potential malicious activity (NetworkPortUnusual, etc.)
-    - `DetectionMechanism`: method used by GuarDuty to detect the finding (TCP, UDP, etc.)
+    - `DetectionMechanism`: method used by GuardDuty to detect the finding (TCP, UDP, etc.)
     - `Artifact`: resource that is used in the malicious activity (DNS, etc.)
 - We can generate sample findings in GuardDuty to test our automations
 - Finding types:
@@ -52,11 +52,11 @@
 - Works only for public IP addresses
 - We can define a list of trusted IP addresses (Trusted IP List):
     - These are CIDR ranges that we trust
-    - GuarDuty does not generate findings for these
+    - GuardDuty does not generate findings for these
 - Threat IP List:
     - List of know malicious IP addresses and CIDR ranges
-    - GuarDuty will generate findings based on these IP ranges
-    - Can be supplied by 3rd party threat intelligence or created custom by us
+    - GuardDuty will generate findings based on these IP ranges
+    - Can be supplied by 3rd party threat intelligence or custom created by us
 
 ## CloudFormation Integration
 
