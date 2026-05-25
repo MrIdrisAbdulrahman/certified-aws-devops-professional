@@ -2,7 +2,7 @@
 
 - Intelligent Threat discovery to protect AWS accounts
 - Uses machine learning algorithms to perform anomaly detection, uses 3rd party data
-- One click to enable, has 30 days trial, no need to install any software
+- One click to enable, has a 30-day trial period, no need to install any software
 - Input data includes:
     - CloudTrail Logs: unusual API calls, unauthorized deployments
     - VPC Flow Logs: unusual internal traffic, unusual IP addresses
@@ -14,23 +14,23 @@
 
 ## Multi-Account Strategy
 
-- We can manage multiple accounts in GuarDuty by using AWS Organizations
+- We can manage multiple accounts in GuardDuty by using AWS Organizations
 - Member accounts can be managed with the administrator account
 - Administrator can do the following:
-    - Add/remove member accounts in GuarDuty
-    - Manage GuarDuty within the associated member accounts
+    - Add/remove member accounts in GuardDuty
+    - Manage GuardDuty within the associated member accounts
     - Manage findings, suppression rules, trusted IP lists, treat list
-- The administrator of GuarDuty does not necessarily have to be the administrator of the organization, we can have delegated administrators for GuarDuty
+- The administrator of GuardDuty does not necessarily have to be the administrator of the organization, we can have delegated administrators for GuardDuty
 
 ## Findings Automated Response
 
 - Findings are potential security issues for malicious events happening in our AWS account
-- We can automate the response to security issues revealed by GuarDuty Findings using EventBridge
-- Events are published to both the administrator account and the member account that it is originated from
+- We can automate the response to security issues revealed by GuardDuty Findings using EventBridge
+- Events are published to both the administrator account and the member account from where it originates
 
 ## Findings
 
-- GuarDuty pulls independent streams of data directly from CloudTrail logs, VPC Flow Logs and EKS logs
+- GuardDuty pulls independent streams of data directly from CloudTrail logs, VPC Flow Logs and EKS logs
 - Each finding has a severity value between 0.1 and 8+ (High, Medium, Low)
 - There is a finding naming convention: `ThreatPurpose:ResourceTypeAffected/ThreatFamilyName.DetectionMechanism!Artifact`
     - `ThreatPurpose`: primary purpose of the threat (Backdoor, CryptoCurrency, etc.)
@@ -38,7 +38,7 @@
     - `ThreatFamilyName`: describes the potential malicious activity (NetworkPortUnusual, etc.)
     - `DetectionMechanism`: method used by GuarDuty to detect the finding (TCP, UDP, etc.)
     - `Artifact`: resource that is used in the malicious activity (DNS, etc.)
-- We can generate sample findings in GuarDuty to test our automations
+- We can generate sample findings in GuardDuty to test our automations
 - Finding types:
     - EC2 Finding Types
     - IAM Finding Types
