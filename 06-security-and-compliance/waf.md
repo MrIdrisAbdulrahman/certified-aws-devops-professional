@@ -34,6 +34,6 @@
 
 ## Enhance CloudFront Origin Security with AWS WAF and AWS Secrets Manager
 
-- Use case: Only the traffic coming from CloudFront should be allow to the ALB
+- Use case: Only the traffic coming from CloudFront should be allowed to the ALB
 
 ![CloudFront Origin Security with AWS WAF and AWS Secrets Manager](images/cloudfront-origin-security-with-waf.png)
